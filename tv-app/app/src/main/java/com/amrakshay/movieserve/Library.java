@@ -31,6 +31,21 @@ final class Library {
             this.url = url;
         }
 
+        /**
+         * The address to hand VLC.
+         *
+         * <p>A file on the laptop is listed as a path like {@code /stream/Action/Film.mkv} and
+         * needs the server's address in front of it. A link offered with {@code --video-url} is
+         * already absolute and points somewhere else entirely, so it must be passed through
+         * untouched -- gluing the server address onto it would produce nonsense.
+         */
+        String playbackUrl(String server) {
+            if (url.startsWith("http://") || url.startsWith("https://")) {
+                return url;
+            }
+            return server + url;
+        }
+
         /** "1.4 GB", for the line under the title. */
         String readableSize() {
             if (size <= 0) return "";

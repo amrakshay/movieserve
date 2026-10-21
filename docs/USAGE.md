@@ -14,7 +14,37 @@ Options:
 |---|---|---|
 | `--port` | `18080` | Port to listen on |
 | `--host` | `0.0.0.0` | Interface to bind. `127.0.0.1` makes it local-only |
+| `--video-url` | | One direct video URL to offer alongside the folder |
 | `--version` | | Print the version and exit |
+
+### Offering a single web link
+
+Typing a long URL with a TV remote is miserable. Pass it on the laptop instead:
+
+```bash
+python3 server/movieserve.py --video-url https://example.com/films/movie.mp4
+```
+
+It appears in the app under a **Link** heading. The folder is optional here, so the URL can be
+offered on its own, or alongside a folder:
+
+```bash
+python3 server/movieserve.py ~/Movies --video-url https://example.com/films/movie.mp4
+```
+
+The TV fetches it **straight from the internet** — your laptop only supplies the address and is not
+in the data path. One consequence: whether seeking works depends on the remote server supporting
+range requests, which is out of our hands.
+
+**It has to be a link to a video file, not to a web page.** VLC is handed the URL directly, so:
+
+| Link | Works |
+|---|---|
+| `https://example.com/movie.mp4` | yes |
+| `https://example.com/stream.m3u8` | yes |
+| `https://youtube.com/watch?v=…` | **no** — that is a page, not a file |
+
+A link that is not `http://` or `https://` is refused at startup rather than failing later on the TV.
 
 It walks the folder recursively and lists `.mkv .mp4 .avi .mov .m4v .webm .ts`. Hidden files and
 hidden folders are skipped. The folder is re-read on every request, so a film copied in while the

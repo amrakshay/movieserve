@@ -89,6 +89,32 @@ public class LibraryTest {
     }
 
     @Test
+    public void localFilesGetTheServerAddressInFront() throws Exception {
+        List<Library.Item> items = Library.parse(BODY);
+        assertEquals("http://192.168.0.116:18080/stream/Top.mkv",
+                items.get(0).playbackUrl("http://192.168.0.116:18080"));
+    }
+
+    @Test
+    public void absoluteLinksArePassedThroughUntouched() throws Exception {
+        // A --video-url entry points somewhere else entirely; prefixing it with the laptop's
+        // address would produce "http://192.168.0.116:18080https://..." and fail to play.
+        List<Library.Item> items = Library.parse(
+                "{\"movies\":[{\"name\":\"Remote.mkv\",\"folder\":\"Link\","
+                        + "\"path\":\"https://example.com/Remote.mkv\",\"size\":0,"
+                        + "\"url\":\"https://example.com/Remote.mkv\"}]}");
+        assertEquals("https://example.com/Remote.mkv",
+                items.get(0).playbackUrl("http://192.168.0.116:18080"));
+    }
+
+    @Test
+    public void plainHttpLinksArePassedThroughToo() throws Exception {
+        List<Library.Item> items = Library.parse(
+                "{\"movies\":[{\"path\":\"x\",\"url\":\"http://example.com/a.mp4\"}]}");
+        assertEquals("http://example.com/a.mp4", items.get(0).playbackUrl("http://10.0.0.1:18080"));
+    }
+
+    @Test
     public void normaliseAddsSchemeAndTrimsTrailingSlash() {
         assertEquals("http://192.168.0.116:18080", Prefs.normalise("192.168.0.116:18080"));
         assertEquals("http://192.168.0.116:18080", Prefs.normalise(" http://192.168.0.116:18080/ "));

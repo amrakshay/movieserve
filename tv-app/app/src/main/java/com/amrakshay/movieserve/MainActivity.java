@@ -132,7 +132,7 @@ public class MainActivity extends Activity implements MovieAdapter.OnMovieSelect
 
     @Override
     public void onMovieSelected(Library.Item item) {
-        String url = Prefs.server(this) + item.url;
+        String url = item.playbackUrl(Prefs.server(this));
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setPackage(VLC_PACKAGE);
         intent.setDataAndType(Uri.parse(url), "video/*");

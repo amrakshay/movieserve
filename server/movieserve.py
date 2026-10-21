@@ -51,21 +51,41 @@ RANGE_RE = re.compile(r"^bytes=(\d*)-(\d*)$")
 
 
 class Library:
-    """The videos under one root directory.
+    """What the server offers: the videos under a directory, and one optional remote URL.
 
     The tree is walked on every request rather than cached. A home library is
     small, the walk costs milliseconds, and it means a film copied in while the
     server runs shows up without a restart.
+
+    Either source may be absent. Serving a directory alone is the usual case;
+    a remote URL alone turns the server into a way of handing one link to the
+    TV without typing it on a remote control.
     """
 
-    def __init__(self, root: Path) -> None:
-        self.root = root.expanduser().resolve()
-        if not self.root.is_dir():
+    def __init__(self, root: Path | None = None, video_url: str | None = None) -> None:
+        if root is None and not video_url:
+            raise ValueError("a directory, a video URL, or both")
+        self.root = root.expanduser().resolve() if root is not None else None
+        if self.root is not None and not self.root.is_dir():
             raise NotADirectoryError(self.root)
+        self.video_url = video_url or None
+
+    @property
+    def name(self) -> str:
+        """What to call this library, for the JSON and the startup banner."""
+        return self.root.name if self.root is not None else "Link"
 
     def entries(self) -> list[dict]:
-        """Every video under the root, sorted by folder then name."""
-        found = []
+        """Every video on offer, sorted by folder then name, the remote URL last."""
+        found = self._local_entries()
+        if self.video_url:
+            found.append(remote_entry(self.video_url))
+        return found
+
+    def _local_entries(self) -> list[dict]:
+        found: list[dict] = []
+        if self.root is None:
+            return found
         for dirpath, dirnames, filenames in os.walk(self.root):
             # Skip hidden directories (.git, .DS_Store spam, Synology @eaDir…).
             dirnames[:] = sorted(d for d in dirnames if not d.startswith("."))
@@ -95,6 +115,8 @@ class Library:
         The check is done on the resolved path, so symlinks and ".." both have
         to land inside the root to be served.
         """
+        if self.root is None:
+            return None
         candidate = (self.root / relative).resolve()
         if candidate != self.root and self.root not in candidate.parents:
             return None
@@ -135,7 +157,7 @@ class Handler(BaseHTTPRequestHandler):
         entries = self.library.entries()
         payload = json.dumps({
             "version": __version__,
-            "root": self.library.root.name,
+            "root": self.library.name,
             "count": len(entries),
             "movies": entries,
         }, ensure_ascii=False, indent=2).encode()
@@ -217,6 +239,42 @@ class Handler(BaseHTTPRequestHandler):
         sys.stderr.write(f"{self.address_string()} {fmt % args}\n")
 
 
+def remote_entry(url: str) -> dict:
+    """The library entry for --video-url.
+
+    The TV fetches this straight from the internet; the laptop only hands over the
+    address. That keeps the laptop out of the data path, and means whether seeking
+    works depends on the remote server honouring range requests, which is not ours
+    to control.
+
+    The size is left at 0 because finding it would mean a request to that server at
+    list time, which would make the library slow to load and fail whenever the host
+    is unreachable.
+    """
+    path = urllib.parse.urlsplit(url).path
+    name = urllib.parse.unquote(path.rsplit("/", 1)[-1]) if path else ""
+    if not name:
+        name = urllib.parse.urlsplit(url).netloc or url
+    return {
+        "name": name,
+        "folder": "Link",
+        "path": url,
+        "size": 0,
+        "url": url,          # absolute, unlike a local entry's /stream/... path
+    }
+
+
+def is_playable_url(url: str) -> bool:
+    """Whether --video-url is something VLC could be handed.
+
+    Only the scheme and a host are checked. Whether the far end actually serves video
+    cannot be known without fetching it, and a link to a web page rather than a file
+    is the user's to get right -- see the README.
+    """
+    parts = urllib.parse.urlsplit(url)
+    return parts.scheme in ("http", "https") and bool(parts.netloc)
+
+
 def parse_range(header: str | None, total: int):
     """Interpret a Range header against a file of `total` bytes.
 
@@ -266,9 +324,10 @@ def lan_address() -> str:
         probe.close()
 
 
-def build_server(directory: Path, host: str, port: int) -> ThreadingHTTPServer:
+def build_server(directory: Path | None, host: str, port: int,
+                 video_url: str | None = None) -> ThreadingHTTPServer:
     """A server ready to `serve_forever`. Separated out so tests can bind port 0."""
-    library = Library(directory)
+    library = Library(directory, video_url)
     handler = type("BoundHandler", (Handler,), {"library": library})
     httpd = ThreadingHTTPServer((host, port), handler)
     httpd.daemon_threads = True     # a stuck stream must not keep the process alive
@@ -280,7 +339,12 @@ def main(argv: list[str] | None = None) -> int:
         prog="movieserve",
         description="Serve a folder of videos to an Android TV over the local network.",
     )
-    parser.add_argument("directory", type=Path, help="folder holding the videos")
+    parser.add_argument("directory", type=Path, nargs="?", default=None,
+                        help="folder holding the videos (optional when --video-url is given)")
+    parser.add_argument("--video-url", default=None, metavar="URL",
+                        help="one direct video URL to offer alongside the folder, so it can be "
+                             "picked on the TV instead of typed in with a remote. It must point "
+                             "at a video file (.mp4, .mkv, .m3u8), not at a web page")
     parser.add_argument("--port", type=int, default=DEFAULT_PORT,
                         help=f"port to listen on (default {DEFAULT_PORT})")
     parser.add_argument("--host", default="0.0.0.0",
@@ -288,8 +352,13 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--version", action="version", version=f"movieserve {__version__}")
     args = parser.parse_args(argv)
 
+    if args.directory is None and not args.video_url:
+        parser.error("give a directory, --video-url, or both")
+    if args.video_url and not is_playable_url(args.video_url):
+        parser.error(f"--video-url must be an http(s) URL, got {args.video_url!r}")
+
     try:
-        httpd = build_server(args.directory, args.host, args.port)
+        httpd = build_server(args.directory, args.host, args.port, args.video_url)
     except NotADirectoryError as exc:
         print(f"movieserve: not a directory: {exc}", file=sys.stderr)
         return 2
@@ -300,7 +369,12 @@ def main(argv: list[str] | None = None) -> int:
     library: Library = httpd.RequestHandlerClass.library     # type: ignore[attr-defined]
     count = len(library.entries())
     print(f"movieserve {__version__}")
-    print(f"  serving {count} video(s) from {library.root}")
+    if library.root is not None:
+        print(f"  serving {count} video(s) from {library.root}")
+    else:
+        print(f"  serving {count} video(s)")
+    if library.video_url:
+        print(f"  plus the link {library.video_url}")
     print(f"  enter this on the TV:  http://{lan_address()}:{args.port}")
     print("  press Ctrl+C to stop")
     try:

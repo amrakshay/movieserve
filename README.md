@@ -61,6 +61,18 @@ movieserve 1.0.0
 
 That is the whole thing.
 
+### Handing the TV a web link
+
+Typing a URL with a remote is miserable, so pass it on the laptop:
+
+```bash
+python3 server/movieserve.py --video-url https://example.com/films/movie.mp4
+```
+
+It shows up in the app under a **Link** heading, and the TV streams it straight from the internet.
+It must be a link to a video *file* — a YouTube or streaming-site page will not play, because VLC
+is handed the URL as-is.
+
 ## Why not just use a file share?
 
 You can, and if SMB or DLNA already works for you, keep using it. This exists because those are

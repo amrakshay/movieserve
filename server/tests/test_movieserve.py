@@ -132,6 +132,59 @@ class LibraryTests(unittest.TestCase):
             movieserve.Library(self.root / "Top.mkv")
 
 
+class VideoUrlTests(unittest.TestCase):
+    """--video-url: one remote link offered alongside (or instead of) a folder."""
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self._tmp.name)
+        self.addCleanup(self._tmp.cleanup)
+        (self.root / "Local.mkv").write_bytes(b"x" * 8)
+
+    def test_url_appears_alongside_local_files(self):
+        library = movieserve.Library(self.root, "https://example.com/films/Remote.mkv")
+        entries = library.entries()
+        self.assertEqual([e["name"] for e in entries], ["Local.mkv", "Remote.mkv"])
+
+    def test_url_entry_is_absolute_and_grouped_under_link(self):
+        library = movieserve.Library(self.root, "https://example.com/films/Remote.mkv")
+        entry = library.entries()[-1]
+        self.assertEqual(entry["url"], "https://example.com/films/Remote.mkv")
+        self.assertEqual(entry["folder"], "Link")
+        self.assertEqual(entry["size"], 0)
+
+    def test_url_alone_needs_no_directory(self):
+        library = movieserve.Library(None, "https://example.com/a.mp4")
+        self.assertEqual(len(library.entries()), 1)
+        self.assertEqual(library.name, "Link")
+
+    def test_neither_source_is_refused(self):
+        with self.assertRaises(ValueError):
+            movieserve.Library(None, None)
+
+    def test_resolve_never_serves_local_files_without_a_root(self):
+        library = movieserve.Library(None, "https://example.com/a.mp4")
+        self.assertIsNone(library.resolve("anything.mkv"))
+
+    def test_name_comes_from_the_last_path_segment(self):
+        self.assertEqual(
+            movieserve.remote_entry("https://example.com/a/b/My%20Film.mkv")["name"],
+            "My Film.mkv")
+
+    def test_name_falls_back_to_the_host_when_the_path_has_none(self):
+        self.assertEqual(movieserve.remote_entry("https://example.com/")["name"], "example.com")
+        self.assertEqual(movieserve.remote_entry("https://example.com")["name"], "example.com")
+
+    def test_accepts_http_and_https(self):
+        self.assertTrue(movieserve.is_playable_url("http://example.com/a.mp4"))
+        self.assertTrue(movieserve.is_playable_url("https://example.com/a.mp4"))
+
+    def test_rejects_anything_vlc_could_not_be_handed(self):
+        for bad in ("", "example.com/a.mp4", "ftp://example.com/a.mp4",
+                    "file:///etc/passwd", "javascript:alert(1)", "http://"):
+            self.assertFalse(movieserve.is_playable_url(bad), bad)
+
+
 class HttpTests(unittest.TestCase):
     """A real server on a real socket."""
 
