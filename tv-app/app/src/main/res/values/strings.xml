@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">movieserve</string>
+    <string name="settings">Server address</string>
+    <string name="save">Save</string>
+    <string name="retry">Try again</string>
+    <string name="set_address">Set the address</string>
+    <string name="loading">Loading from %1$s…</string>
+    <string name="no_server">No server address set yet.</string>
+    <string name="empty_library">No videos found on the server.</string>
+    <string name="cannot_reach">Could not reach %1$s\n\n%2$s\n\nCheck the laptop is awake and movieserve is running.</string>
+    <string name="no_vlc">VLC is not installed on this TV. Install VLC, then try again.</string>
+    <string name="address_hint">Enter the address movieserve printed when it started, for example http://192.168.0.116:18080</string>
+</resources>

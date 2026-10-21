@@ -1,0 +1,61 @@
+name: Bug report
+description: Something does not work
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. If this is about stuttering or slow seeking, please fill in the
+        network section — most such reports turn out to be the TV's Wi-Fi rather than a bug, and
+        that section is how we tell the difference quickly.
+
+  - type: dropdown
+    id: part
+    attributes:
+      label: Which part?
+      options:
+        - Server (Python, on the laptop)
+        - TV app
+        - Both, or not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, what you got instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: server-output
+    attributes:
+      label: Server output
+      description: What the server printed, including its startup lines. Paste the text, not a screenshot.
+      render: shell
+
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      placeholder: "python3 --version"
+
+  - type: input
+    id: tv
+    attributes:
+      label: TV model and Android version
+      placeholder: "Xiaomi MiTV-AXSO0, Android 9"
+
+  - type: textarea
+    id: network
+    attributes:
+      label: Network (only for playback or seeking problems)
+      description: |
+        With ADB connected to the TV:
+        ```
+        adb shell getprop ro.wifi.channels
+        adb shell dumpsys wifi | grep -i "Link speed"
+        ```
+        `ro.wifi.channels` of 11 means the TV is 2.4 GHz only.
+      render: shell

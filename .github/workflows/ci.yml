@@ -1,0 +1,89 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  server:
+    name: Server (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The floor this project claims to support, and current. The server is
+        # standard library only, so these are the only two that can really differ.
+        python: ['3.9', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Run tests
+        run: python -m unittest discover -s server/tests -v
+
+      - name: Check it starts and serves a real file
+        run: |
+          mkdir -p /tmp/library/Action
+          head -c 1048576 /dev/urandom > /tmp/library/Action/sample.mkv
+          python server/movieserve.py /tmp/library --port 18080 &
+          for i in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:18080/ >/dev/null 2>&1 && break
+            sleep 0.5
+          done
+          echo "--- library ---"
+          curl -fsS http://127.0.0.1:18080/api/movies
+          echo "--- range request must answer 206 ---"
+          code=$(curl -s -o /dev/null -w '%{http_code}' -r 100-199 \
+            http://127.0.0.1:18080/stream/Action/sample.mkv)
+          test "$code" = "206" || { echo "expected 206, got $code"; exit 1; }
+          echo "--- traversal must be refused ---"
+          code=$(curl -s -o /dev/null -w '%{http_code}' \
+            --path-as-is http://127.0.0.1:18080/stream/../../etc/passwd)
+          test "$code" = "404" || { echo "expected 404, got $code"; exit 1; }
+
+  tv-app:
+    name: TV app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Unit tests
+        working-directory: tv-app
+        run: ./gradlew test --console=plain
+
+      - name: Build
+        working-directory: tv-app
+        run: ./gradlew assembleRelease --console=plain
+
+      - name: Check the generated banner is up to date
+        run: |
+          # The banner is generated from source; a stale PNG in the repo means someone
+          # edited the image instead of the generator.
+          java tools/BannerGenerator.java
+          git diff --exit-code -- tv-app/app/src/main/res/drawable-nodpi/banner.png \
+            || { echo "banner.png is out of date; run: java tools/BannerGenerator.java"; exit 1; }
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: movieserve-apk
+          path: tv-app/app/build/outputs/apk/release/app-release.apk
+          if-no-files-found: error

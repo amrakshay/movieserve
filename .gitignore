@@ -1,0 +1,21 @@
+# Android / Gradle
+tv-app/.gradle/
+tv-app/build/
+tv-app/app/build/
+tv-app/local.properties
+*.apk
+*.aab
+*.keystore
+!tv-app/gradle/wrapper/gradle-wrapper.jar
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editors and OS
+.DS_Store
+.idea/
+*.iml
+.vscode/

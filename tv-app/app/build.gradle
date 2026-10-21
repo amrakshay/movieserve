@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.amrakshay.movieserve'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.amrakshay.movieserve'
+        // Android 5.0. The TV this was written for runs Android 9 (SDK 28); there is no
+        // reason to exclude older sets, since the app does no decoding of its own.
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName '1.0.0'
+    }
+
+    signingConfigs {
+        // A sideloaded personal app still has to be signed with something. Falling back to the
+        // SDK's debug keystore keeps `assembleRelease` directly installable with no setup, which
+        // is how this app is actually used. Supply your own keystore through the environment to
+        // sign a build you intend to hand to anyone else.
+        release {
+            def store = System.getenv('MOVIESERVE_KEYSTORE')
+                    ?: "${System.properties['user.home']}/.android/debug.keystore"
+            storeFile file(store)
+            storePassword System.getenv('MOVIESERVE_KEYSTORE_PASSWORD') ?: 'android'
+            keyAlias System.getenv('MOVIESERVE_KEY_ALIAS') ?: 'androiddebugkey'
+            keyPassword System.getenv('MOVIESERVE_KEY_PASSWORD') ?: 'android'
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    lint {
+        // The CI build should fail on a real error, not on a style warning.
+        abortOnError true
+        warningsAsErrors false
+    }
+}
+
+dependencies {
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    // Android ships org.json, but the JVM unit tests need a real implementation
+    // instead of the stubbed one, so the parser can be tested without a device.
+    testImplementation 'org.json:json:20240303'
+    testImplementation 'junit:junit:4.13.2'
+}
