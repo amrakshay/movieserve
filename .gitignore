@@ -1,12 +1,14 @@
-# Android / Gradle
-tv-app/.gradle/
-tv-app/build/
-tv-app/app/build/
-tv-app/local.properties
+# Android / Gradle.
+# Deliberately not scoped to a module name: this repository has two Gradle projects, and the
+# per-module version of this file silently failed to cover the second one when it was added.
+.gradle/
+build/
+local.properties
 *.apk
 *.aab
 *.keystore
-!tv-app/gradle/wrapper/gradle-wrapper.jar
+# The wrapper jar is checked in on purpose, so a clone can build without Gradle installed first.
+!gradle/wrapper/gradle-wrapper.jar
 
 # Python
 __pycache__/

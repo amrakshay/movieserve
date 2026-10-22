@@ -1,5 +1,0 @@
-androidx.annotation.Keep
-com.amrakshay.movieserve.phone.ServerService
-com.amrakshay.movieserve.phone.MainActivity
-com.amrakshay.movieserve.phone.MainActivity: MainActivity()
-com.amrakshay.movieserve.phone.ServerService: ServerService()

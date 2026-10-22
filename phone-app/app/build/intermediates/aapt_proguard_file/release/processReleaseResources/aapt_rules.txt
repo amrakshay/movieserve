@@ -1,2 +1,0 @@
--keep class com.amrakshay.movieserve.phone.MainActivity { <init>(); }
--keep class com.amrakshay.movieserve.phone.ServerService { <init>(); }
