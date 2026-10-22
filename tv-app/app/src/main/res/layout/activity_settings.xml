@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:gravity="center"
+    android:paddingStart="80dp"
+    android:paddingEnd="80dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings"
+        android:textColor="@color/text"
+        android:textSize="22sp"
+        android:fontFamily="sans-serif-light" />
+
+    <TextView
+        android:id="@+id/hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textColor="@color/text_dim"
+        android:textSize="13sp" />
+
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:inputType="textUri"
+        android:singleLine="true"
+        android:imeOptions="actionDone"
+        android:nextFocusDown="@+id/save"
+        android:nextFocusForward="@+id/save"
+        android:textColor="@color/text"
+        android:textSize="17sp"
+        android:importantForAutofill="no"
+        android:hint="http://192.168.0.116:18080"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/save" />
+</LinearLayout>

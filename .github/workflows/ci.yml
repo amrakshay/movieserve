@@ -1,0 +1,147 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  server:
+    name: Server (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The floor this project claims to support, and current. The server is
+        # standard library only, so these are the only two that can really differ.
+        python: ['3.9', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Run tests
+        run: python -m unittest discover -s server/tests -v
+
+      - name: Check it starts and serves a real file
+        run: |
+          mkdir -p /tmp/library/Action
+          head -c 1048576 /dev/urandom > /tmp/library/Action/sample.mkv
+          python server/movieserve.py /tmp/library --port 18080 &
+          for i in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:18080/ >/dev/null 2>&1 && break
+            sleep 0.5
+          done
+          echo "--- library ---"
+          curl -fsS http://127.0.0.1:18080/api/movies
+          echo "--- range request must answer 206 ---"
+          code=$(curl -s -o /dev/null -w '%{http_code}' -r 100-199 \
+            http://127.0.0.1:18080/stream/Action/sample.mkv)
+          test "$code" = "206" || { echo "expected 206, got $code"; exit 1; }
+          echo "--- traversal must be refused ---"
+          code=$(curl -s -o /dev/null -w '%{http_code}' \
+            --path-as-is http://127.0.0.1:18080/stream/../../etc/passwd)
+          test "$code" = "404" || { echo "expected 404, got $code"; exit 1; }
+
+  phone-app:
+    name: Phone app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: android-actions/setup-android@v3
+        with:
+          # The action's default package list includes "tools", which Google has retired, and
+          # sdkmanager fails the job rather than skipping it. Name what the build actually needs.
+          packages: 'platform-tools platforms;android-34 build-tools;34.0.0'
+
+      - name: Create a debug keystore for signing
+        run: |
+          # A fresh runner has none, and an unsigned APK cannot be installed. This is a throwaway
+          # key generated per run, which is fine for sideloading and is called out in the release
+          # notes; a real signing key belongs in repository secrets.
+          mkdir -p ~/.android
+          keytool -genkeypair -v -keystore ~/.android/debug.keystore \
+            -storepass android -keypass android -alias androiddebugkey \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=movieserve, OU=movieserve, O=movieserve, L=, S=, C=US"
+
+      - name: Unit tests
+        working-directory: phone-app
+        run: ./gradlew test --console=plain
+
+      - name: Build
+        working-directory: phone-app
+        run: ./gradlew assembleRelease --console=plain
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: movieserve-phone-apk
+          path: phone-app/app/build/outputs/apk/release/app-release.apk
+          if-no-files-found: error
+
+  tv-app:
+    name: TV app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: android-actions/setup-android@v3
+        with:
+          # The action's default package list includes "tools", which Google has retired, and
+          # sdkmanager fails the job rather than skipping it. Name what the build actually needs.
+          packages: 'platform-tools platforms;android-34 build-tools;34.0.0'
+
+      - name: Create a debug keystore for signing
+        run: |
+          # A fresh runner has none, and an unsigned APK cannot be installed. This is a throwaway
+          # key generated per run, which is fine for sideloading and is called out in the release
+          # notes; a real signing key belongs in repository secrets.
+          mkdir -p ~/.android
+          keytool -genkeypair -v -keystore ~/.android/debug.keystore \
+            -storepass android -keypass android -alias androiddebugkey \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=movieserve, OU=movieserve, O=movieserve, L=, S=, C=US"
+
+      - name: Unit tests
+        working-directory: tv-app
+        run: ./gradlew test --console=plain
+
+      - name: Build
+        working-directory: tv-app
+        run: ./gradlew assembleRelease --console=plain
+
+      - name: Check the banner generator still runs
+        run: |
+          # Only that it runs. The output cannot be compared against the committed PNG, because
+          # the wordmark is drawn with whichever system font is present and a Linux runner has
+          # none of the faces a developer's machine does. Checking the bytes would fail on every
+          # run and teach everyone to ignore it.
+          java tools/BannerGenerator.java
+          git checkout -- tv-app/app/src/main/res/drawable-nodpi/banner.png
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: movieserve-apk
+          path: tv-app/app/build/outputs/apk/release/app-release.apk
+          if-no-files-found: error

@@ -1,0 +1,72 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Reads the repository's VERSION file into movieserveVersionName / movieserveVersionCode.
+apply from: "$rootDir/../tools/version.gradle"
+
+android {
+    namespace 'com.amrakshay.movieserve.phone'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.amrakshay.movieserve.phone'
+        // Android 7.0. The Storage Access Framework tree picker this depends on arrived in 21,
+        // but 24 is a sensible floor for a phone app written today.
+        minSdk 24
+        targetSdk 34
+        versionCode movieserveVersionCode
+        versionName movieserveVersionName
+    }
+
+    // A sideloaded app still has to be signed with something, so `assembleRelease` falls back to
+    // the SDK's debug keystore and is directly installable with no setup. That keystore does not
+    // exist on a fresh CI runner, and a missing file here fails the whole build at
+    // validateSigningRelease, so the config is only wired up when the file is actually there.
+    // Supply your own keystore through the environment to sign a build for anyone else.
+    def keystorePath = System.getenv('MOVIESERVE_KEYSTORE')
+            ?: "${System.properties['user.home']}/.android/debug.keystore"
+    def keystore = file(keystorePath)
+    if (keystore.exists()) {
+        signingConfigs {
+            release {
+                storeFile keystore
+                storePassword System.getenv('MOVIESERVE_KEYSTORE_PASSWORD') ?: 'android'
+                keyAlias System.getenv('MOVIESERVE_KEY_ALIAS') ?: 'androiddebugkey'
+                keyPassword System.getenv('MOVIESERVE_KEY_PASSWORD') ?: 'android'
+            }
+        }
+    } else {
+        logger.lifecycle("movieserve: no keystore at ${keystorePath}; release build will be unsigned")
+    }
+
+    buildTypes {
+        release {
+            if (keystore.exists()) {
+                signingConfig signingConfigs.release
+            }
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        // BuildConfig.VERSION_NAME is how Library reports the version, so it cannot drift from
+        // what the build actually produced.
+        buildConfig true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    // documentfile is the only way to walk a Storage Access Framework tree without writing the
+    // DocumentsContract cursor handling by hand.
+    implementation 'androidx.documentfile:documentfile:1.0.1'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.json:json:20240303'
+}
