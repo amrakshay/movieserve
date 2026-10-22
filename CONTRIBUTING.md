@@ -51,6 +51,11 @@ PNG:
 java tools/BannerGenerator.java
 ```
 
+CI checks that the generator still runs, but not that its output matches the committed PNG: the
+wordmark uses whichever system font is present, so the bytes differ between machines. Regenerating
+on a machine without Helvetica Neue will produce a visibly different banner, so check what you are
+committing.
+
 ## House style
 
 - **The server stays standard library only.** This is the feature that makes it a one-command tool;
@@ -89,6 +94,36 @@ The version lives in one place: the [`VERSION`](VERSION) file at the repository 
 The project follows [semantic versioning](https://semver.org/). The HTTP API is the public
 interface: changing the shape of `/api/movies`, or how ranges are answered, is a breaking change,
 because a TV app in the wild may be older than the server it is pointed at.
+
+### The signing key
+
+Releases are signed with a real key so an installed app can be upgraded in place. The key is **not**
+in this repository. It lives on the maintainer's machine at `~/.movieserve/` and in three repository
+secrets that the release workflow decodes:
+
+| Secret | What it is |
+|---|---|
+| `MOVIESERVE_KEYSTORE_BASE64` | The PKCS12 keystore, base64 encoded |
+| `MOVIESERVE_KEYSTORE_PASSWORD` | Its password |
+| `MOVIESERVE_KEY_PASSWORD` | The key's password. **The same value**: PKCS12 keeps one password for both, and a different key password is silently ignored and then fails at signing time |
+
+The alias is `movieserve` and is set in the workflow, not a secret.
+
+**Losing that keystore means never being able to publish an upgrade** to an already installed app,
+because Android refuses an update signed with a different key. Back up `~/.movieserve/` somewhere
+durable.
+
+Pull-request builds deliberately do **not** get this key. They sign with a throwaway debug key, so
+a pull request from a fork cannot be used to obtain it, and the release workflow refuses to run at
+all if the secret is missing rather than quietly publishing unsigned APKs.
+
+To build a signed release locally:
+
+```bash
+set -a; source ~/.movieserve/credentials.env; set +a   # note: exported, or Gradle will not see them
+export MOVIESERVE_KEYSTORE=~/.movieserve/release.keystore
+cd tv-app && ./gradlew assembleRelease
+```
 
 ### Cutting a release
 

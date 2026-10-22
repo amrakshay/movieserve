@@ -131,13 +131,14 @@ jobs:
         working-directory: tv-app
         run: ./gradlew assembleRelease --console=plain
 
-      - name: Check the generated banner is up to date
+      - name: Check the banner generator still runs
         run: |
-          # The banner is generated from source; a stale PNG in the repo means someone
-          # edited the image instead of the generator.
+          # Only that it runs. The output cannot be compared against the committed PNG, because
+          # the wordmark is drawn with whichever system font is present and a Linux runner has
+          # none of the faces a developer's machine does. Checking the bytes would fail on every
+          # run and teach everyone to ignore it.
           java tools/BannerGenerator.java
-          git diff --exit-code -- tv-app/app/src/main/res/drawable-nodpi/banner.png \
-            || { echo "banner.png is out of date; run: java tools/BannerGenerator.java"; exit 1; }
+          git checkout -- tv-app/app/src/main/res/drawable-nodpi/banner.png
 
       - uses: actions/upload-artifact@v4
         with:
