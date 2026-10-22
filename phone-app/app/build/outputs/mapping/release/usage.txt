@@ -125,6 +125,7 @@ com.amrakshay.movieserve.phone.R$mipmap
 com.amrakshay.movieserve.phone.R$string:
     public static int app_name
     public static int enter_on_tv
+    public static int fix_battery
     public static int folder_heading
     public static int hint_footer
     public static int link_heading
@@ -170,11 +171,14 @@ com.amrakshay.movieserve.phone.Library:
     public static java.lang.String rootName()
 com.amrakshay.movieserve.phone.MainActivity:
     public static void askForNotificationPermission()
+    public static void askToIgnoreBatteryOptimisation()
+    public static boolean isExemptFromDoze()
     public static void lambda$onCreate$0()
     public static void lambda$onCreate$1()
     public static void lambda$onCreate$2()
-    public static synthetic void lambda$render$3()
+    public static void lambda$onCreate$3()
     public static synthetic void lambda$render$4()
+    public static synthetic void lambda$render$5()
     public static void pickFolder()
     public static java.lang.String readableFolder()
     public static void saveUrl()

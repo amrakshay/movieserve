@@ -20,6 +20,12 @@
          for the owner to see or stop the server.
     -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!--
+         Lets the app offer the owner a way out of Doze. Measured on a OnePlus 7: without the
+         exemption, a request under deep Doze took up to 8 seconds, which would stall a film.
+         Only ever requested, never assumed; the owner can say no and the server still works.
+    -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <application
         android:allowBackup="false"

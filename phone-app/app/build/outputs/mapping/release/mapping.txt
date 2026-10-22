@@ -3,8 +3,8 @@
 # min_api: 24
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: 72b8211
-# pg_map_hash: SHA-256 72b821183e803f0e1b34dac1ee08a0f2ed518daa1619fe8564d71ff2d133e00d
+# pg_map_id: 366434f
+# pg_map_hash: SHA-256 366434fce169b89f0c82afe4f48d6b08b3bc1b71bdee3c1a196fcd9531f8824a
 androidx.annotation.Keep -> a.a:
 # {"id":"sourceFile","fileName":"Keep.java"}
 androidx.documentfile.provider.DocumentFile -> R8$$REMOVED$$CLASS$$0:
@@ -75,7 +75,7 @@ com.amrakshay.movieserve.phone.HttpServer$$ExternalSyntheticLambda1 -> c.a:
       # {"id":"com.android.tools.r8.synthesized"}
     1:1:void c.HttpServer$$ExternalSyntheticLambda1.<init>(java.lang.Object,java.lang.Object,int):0:0 -> <init>
       # {"id":"com.android.tools.r8.synthesized"}
-    1:1:void com.amrakshay.movieserve.phone.MainActivity.lambda$render$3(java.lang.String):0:0 -> run
+    1:1:void com.amrakshay.movieserve.phone.MainActivity.lambda$render$4(java.lang.String):0:0 -> run
     1:1:void c.HttpServer$$ExternalSyntheticLambda1.run():0 -> run
       # {"id":"com.android.tools.r8.synthesized"}
     2:2:void c.HttpServer$$ExternalSyntheticLambda1.run():0:0 -> run
@@ -216,6 +216,9 @@ com.amrakshay.movieserve.phone.MainActivity -> com.amrakshay.movieserve.phone.Ma
     3:3:boolean com.amrakshay.movieserve.phone.ServerService.isRunning():0:0 -> a
     3:3:void render():0 -> a
     4:4:void render():0:0 -> a
+    5:5:boolean isExemptFromDoze():0:0 -> a
+    5:5:void render():0 -> a
+    6:6:void render():0:0 -> a
     1:1:android.content.SharedPreferences com.amrakshay.movieserve.phone.Prefs.of(android.content.Context):0:0 -> onActivityResult
     1:1:void com.amrakshay.movieserve.phone.Prefs.setTree(android.content.Context,android.net.Uri):0 -> onActivityResult
     1:1:void onActivityResult(int,int,android.content.Intent):0 -> onActivityResult
@@ -259,59 +262,63 @@ com.amrakshay.movieserve.phone.MainActivity$$ExternalSyntheticLambda1 -> c.g:
       # {"id":"com.android.tools.r8.synthesized"}
     1:1:boolean com.amrakshay.movieserve.phone.ServerService.isRunning():0:0 -> onClick
     1:1:void com.amrakshay.movieserve.phone.MainActivity.toggleServer():0 -> onClick
-    1:1:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$2(android.view.View):0 -> onClick
+    1:1:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$3(android.view.View):0 -> onClick
     1:1:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
       # {"id":"com.android.tools.r8.synthesized"}
     2:2:void com.amrakshay.movieserve.phone.ServerService.stop(android.content.Context):0:0 -> onClick
     2:2:void com.amrakshay.movieserve.phone.MainActivity.toggleServer():0 -> onClick
-    2:2:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$2(android.view.View):0 -> onClick
+    2:2:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$3(android.view.View):0 -> onClick
     2:2:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
     3:3:void com.amrakshay.movieserve.phone.MainActivity.toggleServer():0:0 -> onClick
-    3:3:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$2(android.view.View):0 -> onClick
+    3:3:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$3(android.view.View):0 -> onClick
     3:3:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
     4:4:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0:0 -> onClick
     5:5:void com.amrakshay.movieserve.phone.MainActivity.saveUrl():0:0 -> onClick
-    5:5:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$1(android.view.View):0 -> onClick
+    5:5:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$2(android.view.View):0 -> onClick
     5:5:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
     6:6:android.content.SharedPreferences com.amrakshay.movieserve.phone.Prefs.of(android.content.Context):0:0 -> onClick
     6:6:void com.amrakshay.movieserve.phone.Prefs.setVideoUrl(android.content.Context,java.lang.String):0 -> onClick
     6:6:void com.amrakshay.movieserve.phone.MainActivity.saveUrl():0 -> onClick
-    6:6:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$1(android.view.View):0 -> onClick
+    6:6:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$2(android.view.View):0 -> onClick
     6:6:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
     7:7:void com.amrakshay.movieserve.phone.Prefs.setVideoUrl(android.content.Context,java.lang.String):0:0 -> onClick
     7:7:void com.amrakshay.movieserve.phone.MainActivity.saveUrl():0 -> onClick
-    7:7:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$1(android.view.View):0 -> onClick
+    7:7:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$2(android.view.View):0 -> onClick
     7:7:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
     8:8:void com.amrakshay.movieserve.phone.MainActivity.saveUrl():0:0 -> onClick
-    8:8:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$1(android.view.View):0 -> onClick
+    8:8:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$2(android.view.View):0 -> onClick
     8:8:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
     9:9:boolean com.amrakshay.movieserve.phone.ServerService.isRunning():0:0 -> onClick
     9:9:void com.amrakshay.movieserve.phone.MainActivity.saveUrl():0 -> onClick
-    9:9:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$1(android.view.View):0 -> onClick
+    9:9:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$2(android.view.View):0 -> onClick
     9:9:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
     10:10:void com.amrakshay.movieserve.phone.MainActivity.saveUrl():0:0 -> onClick
-    10:10:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$1(android.view.View):0 -> onClick
+    10:10:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$2(android.view.View):0 -> onClick
     10:10:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
     11:11:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0:0 -> onClick
     12:12:void com.amrakshay.movieserve.phone.MainActivity.pickFolder():0:0 -> onClick
-    12:12:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$0(android.view.View):0 -> onClick
+    12:12:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$1(android.view.View):0 -> onClick
     12:12:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
-com.amrakshay.movieserve.phone.MainActivity$$ExternalSyntheticLambda4 -> c.h:
+    13:13:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0:0 -> onClick
+    14:14:void com.amrakshay.movieserve.phone.MainActivity.askToIgnoreBatteryOptimisation():0:0 -> onClick
+    14:14:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$0(android.view.View):0 -> onClick
+    14:14:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
+com.amrakshay.movieserve.phone.MainActivity$$ExternalSyntheticLambda5 -> c.h:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
-    int c.MainActivity$$ExternalSyntheticLambda4.$r8$classId -> a
+    int c.MainActivity$$ExternalSyntheticLambda5.$r8$classId -> a
       # {"id":"com.android.tools.r8.synthesized"}
     com.amrakshay.movieserve.phone.MainActivity com.amrakshay.movieserve.phone.MainActivity$$InternalSyntheticLambda$1$8caca823b87f904fb8e6895fe0f535159695f57d1542dcefb479ccf493c122ff$0.f$0 -> b
       # {"id":"com.android.tools.r8.residualsignature","signature":"Ljava/lang/Object;"}
       # {"id":"com.android.tools.r8.synthesized"}
-    1:1:void c.MainActivity$$ExternalSyntheticLambda4.<init>(java.lang.Object,int):0:0 -> <init>
+    1:1:void c.MainActivity$$ExternalSyntheticLambda5.<init>(java.lang.Object,int):0:0 -> <init>
       # {"id":"com.android.tools.r8.synthesized"}
     1:1:void com.amrakshay.movieserve.phone.HttpServer.acceptLoop():0:0 -> run
-    1:1:void c.MainActivity$$ExternalSyntheticLambda4.run():0 -> run
+    1:1:void c.MainActivity$$ExternalSyntheticLambda5.run():0 -> run
       # {"id":"com.android.tools.r8.synthesized"}
-    2:2:void c.MainActivity$$ExternalSyntheticLambda4.run():0:0 -> run
-    3:3:void com.amrakshay.movieserve.phone.MainActivity.lambda$render$4():0:0 -> run
-    3:3:void c.MainActivity$$ExternalSyntheticLambda4.run():0 -> run
+    2:2:void c.MainActivity$$ExternalSyntheticLambda5.run():0:0 -> run
+    3:3:void com.amrakshay.movieserve.phone.MainActivity.lambda$render$5():0:0 -> run
+    3:3:void c.MainActivity$$ExternalSyntheticLambda5.run():0 -> run
 com.amrakshay.movieserve.phone.MainActivity$1 -> c.i:
 # {"id":"sourceFile","fileName":"MainActivity.java"}
     com.amrakshay.movieserve.phone.MainActivity this$0 -> a

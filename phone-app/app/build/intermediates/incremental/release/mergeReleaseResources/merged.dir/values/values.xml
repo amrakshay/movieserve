@@ -7,12 +7,14 @@
     <color name="text_dim">#A6FFFFFF</color>
     <string name="app_name">movieserve</string>
     <string name="bad_url">That is not an http or https address</string>
+    <string name="battery_why">Android may slow the server down while the screen is off. Allowing background use keeps playback smooth.</string>
     <string name="channel_description">Shown while the phone is sharing videos</string>
     <string name="channel_name">Server running</string>
     <string name="count_format">%1$d video(s)</string>
     <string name="counting">Counting…</string>
     <string name="enter_on_tv">Enter this on the TV</string>
     <string name="error_port_busy">Port %1$d is already in use. Stop whatever is using it and try again.</string>
+    <string name="fix_battery">Allow background use (recommended)</string>
     <string name="folder_heading">Folder to share</string>
     <string name="hint_footer">Keep this app installed and the server running while you watch. Anyone on this network can list and download the shared folder.</string>
     <string name="link_heading">Web link (optional)</string>

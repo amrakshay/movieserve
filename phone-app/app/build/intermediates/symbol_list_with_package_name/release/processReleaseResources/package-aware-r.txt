@@ -5,6 +5,7 @@ color card
 color text
 color text_dim
 id address
+id battery
 id count
 id folder
 id pickFolder
@@ -16,12 +17,14 @@ layout activity_main
 mipmap ic_launcher
 string app_name
 string bad_url
+string battery_why
 string channel_description
 string channel_name
 string count_format
 string counting
 string enter_on_tv
 string error_port_busy
+string fix_battery
 string folder_heading
 string hint_footer
 string link_heading

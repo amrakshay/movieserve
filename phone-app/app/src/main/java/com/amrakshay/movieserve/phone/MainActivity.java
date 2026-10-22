@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.PowerManager;
+import android.provider.Settings;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -65,6 +67,7 @@ public class MainActivity extends Activity {
         urlField = findViewById(R.id.url);
         toggle = findViewById(R.id.toggle);
 
+        findViewById(R.id.battery).setOnClickListener(v -> askToIgnoreBatteryOptimisation());
         findViewById(R.id.pickFolder).setOnClickListener(v -> pickFolder());
         findViewById(R.id.saveUrl).setOnClickListener(v -> saveUrl());
         toggle.setOnClickListener(v -> toggleServer());
@@ -159,6 +162,33 @@ public class MainActivity extends Activity {
         ui.postDelayed(this::render, 400);
     }
 
+    /**
+     * Whether Android will leave the server alone while the screen is off.
+     *
+     * <p>Measured on a OnePlus 7 without the exemption: under deep Doze a request took up to eight
+     * seconds, which is long enough to stall playback. The foreground service and wake lock keep
+     * the server alive either way; this is about how quickly it answers.
+     */
+    private boolean isExemptFromDoze() {
+        PowerManager power = getSystemService(PowerManager.class);
+        return power != null && power.isIgnoringBatteryOptimizations(getPackageName());
+    }
+
+    /**
+     * Ask Android to exempt this app. The owner can refuse, and everything still works, so this is
+     * offered rather than demanded, and the button disappears once it is granted.
+     */
+    private void askToIgnoreBatteryOptimisation() {
+        try {
+            // The settings list, not the direct "grant me this" dialog: the latter is restricted
+            // and gets apps removed from Play, and this is clearer about what is being changed.
+            startActivity(new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS));
+            Toast.makeText(this, R.string.battery_why, Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Toast.makeText(this, R.string.battery_why, Toast.LENGTH_LONG).show();
+        }
+    }
+
     private void askForNotificationPermission() {
         // From Android 13 a foreground service may run without its notification being shown, which
         // would leave the owner no way to see or stop the server.
@@ -178,6 +208,7 @@ public class MainActivity extends Activity {
 
         boolean running = ServerService.isRunning();
         toggle.setText(running ? R.string.stop_server : R.string.start_server);
+        findViewById(R.id.battery).setVisibility(isExemptFromDoze() ? View.GONE : View.VISIBLE);
 
         String url = Net.serverUrl();
         if (running) {

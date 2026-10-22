@@ -32,5 +32,7 @@
     <string name="channel_name">Server running</string>
     <string name="channel_description">Shown while the phone is sharing videos</string>
 
+    <string name="fix_battery">Allow background use (recommended)</string>
+    <string name="battery_why">Android may slow the server down while the screen is off. Allowing background use keeps playback smooth.</string>
     <string name="hint_footer">Keep this app installed and the server running while you watch. Anyone on this network can list and download the shared folder.</string>
 </resources>

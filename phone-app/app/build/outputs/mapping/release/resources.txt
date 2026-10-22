@@ -1,38 +1,41 @@
-Marking string:channel_name:2131034115 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:channel_description:2131034114 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:notification_title:2131034128 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:stop:2131034135 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:notification_starting:2131034127 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:no_network:2131034125 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:error_port_busy:2131034119 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:nothing_to_serve:2131034126 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:channel_name:2131034116 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:channel_description:2131034115 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:notification_title:2131034130 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:stop:2131034137 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:notification_starting:2131034129 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:no_network:2131034127 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:error_port_busy:2131034120 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:nothing_to_serve:2131034128 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
 Marking string:bad_url:2131034113 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:saved:2131034132 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:no_file_picker:2131034123 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:no_folder:2131034124 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:whole_storage:2131034139 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:stop_server:2131034136 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:start_server:2131034134 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:serving:2131034133 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:stopped:2131034137 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:counting:2131034117 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:saved:2131034134 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:no_file_picker:2131034125 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:battery_why:2131034114 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:no_folder:2131034126 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:whole_storage:2131034141 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:stop_server:2131034138 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:start_server:2131034136 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking id:battery:2130837505 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:serving:2131034135 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:stopped:2131034139 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:counting:2131034118 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
 Marking layout:activity_main:2130903040 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking id:folder:2130837506 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking id:count:2130837505 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking id:folder:2130837507 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking id:count:2130837506 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
 Marking id:address:2130837504 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking id:state:2130837509 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking id:url:2130837511 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking id:toggle:2130837510 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking id:pickFolder:2130837507 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking id:saveUrl:2130837508 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:count_format:2131034116 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-Marking string:plus_link:2131034130 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking id:state:2130837510 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking id:url:2130837512 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking id:toggle:2130837511 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking id:pickFolder:2130837508 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking id:saveUrl:2130837509 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:count_format:2131034117 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+Marking string:plus_link:2131034132 reachable: referenced from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
 @color/accent : reachable=false
 @color/background : reachable=false
 @color/card : reachable=false
 @color/text : reachable=false
 @color/text_dim : reachable=false
 @id/address : reachable=true
+@id/battery : reachable=true
 @id/count : reachable=true
 @id/folder : reachable=true
 @id/pickFolder : reachable=true
@@ -48,6 +51,7 @@ Marking string:plus_link:2131034130 reachable: referenced from /Users/akshay/Wor
     @color/accent
     @color/text_dim
     @string/enter_on_tv
+    @string/fix_battery
     @string/folder_heading
     @string/pick_folder
     @string/link_heading
@@ -57,12 +61,14 @@ Marking string:plus_link:2131034130 reachable: referenced from /Users/akshay/Wor
 @mipmap/ic_launcher : reachable=true
 @string/app_name : reachable=true
 @string/bad_url : reachable=true
+@string/battery_why : reachable=true
 @string/channel_description : reachable=true
 @string/channel_name : reachable=true
 @string/count_format : reachable=true
 @string/counting : reachable=true
 @string/enter_on_tv : reachable=false
 @string/error_port_busy : reachable=true
+@string/fix_battery : reachable=false
 @string/folder_heading : reachable=false
 @string/hint_footer : reachable=false
 @string/link_heading : reachable=false
@@ -90,38 +96,40 @@ Marking string:plus_link:2131034130 reachable: referenced from /Users/akshay/Wor
 
 The root reachable resources are:
  id:address:2130837504
- id:count:2130837505
- id:folder:2130837506
- id:pickFolder:2130837507
- id:saveUrl:2130837508
- id:state:2130837509
- id:toggle:2130837510
- id:url:2130837511
+ id:battery:2130837505
+ id:count:2130837506
+ id:folder:2130837507
+ id:pickFolder:2130837508
+ id:saveUrl:2130837509
+ id:state:2130837510
+ id:toggle:2130837511
+ id:url:2130837512
  layout:activity_main:2130903040
  mipmap:ic_launcher:2130968576
  string:app_name:2131034112
  string:bad_url:2131034113
- string:channel_description:2131034114
- string:channel_name:2131034115
- string:count_format:2131034116
- string:counting:2131034117
- string:error_port_busy:2131034119
- string:no_file_picker:2131034123
- string:no_folder:2131034124
- string:no_network:2131034125
- string:nothing_to_serve:2131034126
- string:notification_starting:2131034127
- string:notification_title:2131034128
- string:plus_link:2131034130
- string:saved:2131034132
- string:serving:2131034133
- string:start_server:2131034134
- string:stop:2131034135
- string:stop_server:2131034136
- string:stopped:2131034137
- string:whole_storage:2131034139
+ string:battery_why:2131034114
+ string:channel_description:2131034115
+ string:channel_name:2131034116
+ string:count_format:2131034117
+ string:counting:2131034118
+ string:error_port_busy:2131034120
+ string:no_file_picker:2131034125
+ string:no_folder:2131034126
+ string:no_network:2131034127
+ string:nothing_to_serve:2131034128
+ string:notification_starting:2131034129
+ string:notification_title:2131034130
+ string:plus_link:2131034132
+ string:saved:2131034134
+ string:serving:2131034135
+ string:start_server:2131034136
+ string:stop:2131034137
+ string:stop_server:2131034138
+ string:stopped:2131034139
+ string:whole_storage:2131034141
  style:AppTheme:2131099648
  xml:network_security_config:2131165184
 Unused resources are: 
 
-Resource shrinking did not work (grew from 11368 to 11440); using original instead
+Resource shrinking did not work (grew from 11612 to 11684); using original instead

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:2:1-38:12
+ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:2:1-42:12
+INJECTED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:2:1-42:12
+INJECTED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:2:1-42:12
+INJECTED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:2:1-42:12
 MERGED from [androidx.documentfile:documentfile:1.0.1] /Users/akshay/.gradle/caches/8.9/transforms/82d96cf7b43ad58c09a635bd113f5e01/transformed/documentfile-1.0.1/AndroidManifest.xml:17:1-22:12
 	package
 		INJECTED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml
@@ -37,49 +37,53 @@ uses-permission#android.permission.POST_NOTIFICATIONS
 ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:13:5-77
 	android:name
 		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:13:22-74
+uses-permission#android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:17:5-95
+	android:name
+		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:17:22-92
 application
-ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:15:5-37:19
-INJECTED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:15:5-37:19
+ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:19:5-41:19
+INJECTED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:19:5-41:19
 	android:extractNativeLibs
 		INJECTED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml
 	android:supportsRtl
-		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:20:9-35
+		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:24:9-35
 	android:label
-		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:18:9-41
+		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:22:9-41
 	android:icon
-		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:17:9-43
+		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:21:9-43
 	android:allowBackup
-		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:16:9-36
+		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:20:9-36
 	android:theme
-		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:21:9-40
+		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:25:9-40
 	android:networkSecurityConfig
-		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:19:9-69
+		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:23:9-69
 activity#com.amrakshay.movieserve.phone.MainActivity
-ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:23:9-31:20
+ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:27:9-35:20
 	android:launchMode
-		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:26:13-44
+		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:30:13-44
 	android:exported
-		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:25:13-36
+		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:29:13-36
 	android:name
-		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:24:13-41
+		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:28:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:27:13-30:29
+ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:31:13-34:29
 action#android.intent.action.MAIN
-ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:28:17-69
+ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:32:17-69
 	android:name
-		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:28:25-66
+		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:32:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:29:17-77
+ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:33:17-77
 	android:name
-		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:29:27-74
+		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:33:27-74
 service#com.amrakshay.movieserve.phone.ServerService
-ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:33:9-36:56
+ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:37:9-40:56
 	android:exported
-		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:35:13-37
+		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:39:13-37
 	android:foregroundServiceType
-		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:36:13-53
+		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:40:13-53
 	android:name
-		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:34:13-42
+		ADDED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml:38:13-42
 uses-sdk
 INJECTED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/AndroidManifest.xml
