@@ -58,11 +58,14 @@ jobs:
           mkdir -p "$HOME/.movieserve"
           echo "$KEYSTORE_BASE64" | base64 --decode > "$HOME/.movieserve/release.keystore"
           chmod 600 "$HOME/.movieserve/release.keystore"
+          # Pass the path on through the environment file rather than a ${{ }} expression: the
+          # env context does not carry system variables, so ${{ env.HOME }} expands to nothing and
+          # Gradle quietly builds unsigned instead of failing.
+          echo "MOVIESERVE_KEYSTORE=$HOME/.movieserve/release.keystore" >> "$GITHUB_ENV"
 
       - name: Build the TV app
         working-directory: tv-app
         env:
-          MOVIESERVE_KEYSTORE: ${{ env.HOME }}/.movieserve/release.keystore
           MOVIESERVE_KEYSTORE_PASSWORD: ${{ secrets.MOVIESERVE_KEYSTORE_PASSWORD }}
           MOVIESERVE_KEY_PASSWORD: ${{ secrets.MOVIESERVE_KEY_PASSWORD }}
           MOVIESERVE_KEY_ALIAS: movieserve
@@ -71,7 +74,6 @@ jobs:
       - name: Build the phone app
         working-directory: phone-app
         env:
-          MOVIESERVE_KEYSTORE: ${{ env.HOME }}/.movieserve/release.keystore
           MOVIESERVE_KEYSTORE_PASSWORD: ${{ secrets.MOVIESERVE_KEYSTORE_PASSWORD }}
           MOVIESERVE_KEY_PASSWORD: ${{ secrets.MOVIESERVE_KEY_PASSWORD }}
           MOVIESERVE_KEY_ALIAS: movieserve
@@ -85,6 +87,13 @@ jobs:
           for apk in tv-app/app/build/outputs/apk/release/app-release.apk \
                      phone-app/app/build/outputs/apk/release/app-release.apk; do
             echo "--- $apk"
+            if [ ! -f "$apk" ]; then
+              # Gradle names the output app-release-unsigned.apk when it had no keystore, so a
+              # missing file here means signing did not happen rather than the build failing.
+              echo "::error::$apk is missing; the build produced an unsigned APK, so the signing key was not picked up"
+              ls -la "$(dirname "$apk")" || true
+              exit 1
+            fi
             "$APKSIGNER" verify --print-certs "$apk" | grep -E "Signer #1 certificate (DN|SHA-256)"
             "$APKSIGNER" verify --print-certs "$apk" | grep -q "CN=movieserve" || {
               echo "::error::$apk is not signed with the movieserve release key"; exit 1; }
