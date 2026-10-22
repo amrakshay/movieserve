@@ -1,0 +1,80 @@
+name: Release
+
+# Pushing a v* tag builds both apps and publishes them on a GitHub release.
+# The tag is checked against the VERSION file first, so a mistyped tag fails loudly
+# instead of shipping artefacts labelled with the wrong number.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the tag matches VERSION
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          FILE="$(cat VERSION | tr -d '[:space:]')"
+          echo "tag=$TAG VERSION=$FILE"
+          if [ "$TAG" != "$FILE" ]; then
+            echo "::error::tag $GITHUB_REF_NAME does not match VERSION ($FILE)"
+            exit 1
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Server tests
+        run: python -m unittest discover -s server/tests -v
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Build the TV app
+        working-directory: tv-app
+        run: ./gradlew test assembleRelease --console=plain
+
+      - name: Build the phone app
+        working-directory: phone-app
+        run: ./gradlew test assembleRelease --console=plain
+
+      - name: Name the APKs after the release
+        run: |
+          mkdir -p dist
+          cp tv-app/app/build/outputs/apk/release/app-release.apk \
+             "dist/movieserve-tv-${GITHUB_REF_NAME}.apk"
+          cp phone-app/app/build/outputs/apk/release/app-release.apk \
+             "dist/movieserve-phone-${GITHUB_REF_NAME}.apk"
+          ls -la dist
+
+      - name: Pull this version's notes out of the changelog
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          # The section from this version's heading to the next one.
+          awk -v v="$TAG" '
+            $0 ~ "^## \\[" v "\\]" {found=1; next}
+            found && /^## \[/ {exit}
+            found {print}
+          ' CHANGELOG.md > release-notes.md
+          if [ ! -s release-notes.md ]; then
+            echo "No changelog section for $TAG; falling back to a generated list." > release-notes.md
+          fi
+          cat release-notes.md
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.apk
+          body_path: release-notes.md
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ contains(github.ref_name, '-') }}

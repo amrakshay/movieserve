@@ -29,7 +29,8 @@ import java.util.Locale;
  */
 final class Library {
 
-    static final String VERSION = "1.0.0";
+    /** Taken from the build rather than written out again, so it cannot drift from the APK. */
+    static final String VERSION = BuildConfig.VERSION_NAME;
 
     /** Matches the Python server. Anything else in the folder is ignored rather than listed. */
     private static final List<String> VIDEO_SUFFIXES =

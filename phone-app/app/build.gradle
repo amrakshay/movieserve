@@ -2,6 +2,9 @@ plugins {
     id 'com.android.application'
 }
 
+// Reads the repository's VERSION file into movieserveVersionName / movieserveVersionCode.
+apply from: "$rootDir/../tools/version.gradle"
+
 android {
     namespace 'com.amrakshay.movieserve.phone'
     compileSdk 34
@@ -12,8 +15,8 @@ android {
         // but 24 is a sensible floor for a phone app written today.
         minSdk 24
         targetSdk 34
-        versionCode 1
-        versionName '1.0.0'
+        versionCode movieserveVersionCode
+        versionName movieserveVersionName
     }
 
     signingConfigs {
@@ -36,6 +39,12 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    buildFeatures {
+        // BuildConfig.VERSION_NAME is how Library reports the version, so it cannot drift from
+        // what the build actually produced.
+        buildConfig true
     }
 
     compileOptions {

@@ -2,6 +2,9 @@ plugins {
     id 'com.android.application'
 }
 
+// Reads the repository's VERSION file into movieserveVersionName / movieserveVersionCode.
+apply from: "$rootDir/../tools/version.gradle"
+
 android {
     namespace 'com.amrakshay.movieserve'
     compileSdk 34
@@ -12,8 +15,8 @@ android {
         // reason to exclude older sets, since the app does no decoding of its own.
         minSdk 21
         targetSdk 34
-        versionCode 1
-        versionName '1.0.0'
+        versionCode movieserveVersionCode
+        versionName movieserveVersionName
     }
 
     signingConfigs {

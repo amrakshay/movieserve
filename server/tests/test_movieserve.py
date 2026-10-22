@@ -24,6 +24,32 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import movieserve  # noqa: E402
 
 
+class VersionTests(unittest.TestCase):
+    """The repository's VERSION file is the single source of truth.
+
+    The Android projects read it at build time, so they cannot drift. The Python server carries a
+    literal instead, to stay a single file with no imports beyond the standard library -- which
+    means it can drift, so this test is what stops it.
+    """
+
+    def test_server_version_matches_the_version_file(self):
+        version_file = Path(__file__).resolve().parents[2] / "VERSION"
+        declared = version_file.read_text().strip()
+        self.assertEqual(
+            movieserve.__version__, declared,
+            f"server/movieserve.py says {movieserve.__version__!r} but VERSION says {declared!r}. "
+            f"Update __version__ to match, or the release will ship disagreeing numbers.")
+
+    def test_version_file_is_semantic(self):
+        version_file = Path(__file__).resolve().parents[2] / "VERSION"
+        self.assertRegex(version_file.read_text().strip(), r"^\d+\.\d+\.\d+$")
+
+    def test_the_server_header_carries_that_version(self):
+        # What a client actually sees, rather than the constant on its own.
+        self.assertEqual(movieserve.Handler.server_version,
+                         f"movieserve/{movieserve.__version__}")
+
+
 class ParseRangeTests(unittest.TestCase):
     """parse_range maps a Range header onto a file of a known size."""
 

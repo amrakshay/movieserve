@@ -138,6 +138,7 @@ from:
 ## Documentation
 
 - [docs/USAGE.md](docs/USAGE.md) — installing, running, the API, and troubleshooting
+- [CHANGELOG.md](CHANGELOG.md) — what changed, and when
 - [CONTRIBUTING.md](CONTRIBUTING.md) — how to build, test and propose changes
 - [SECURITY.md](SECURITY.md) — the threat model, stated plainly
 

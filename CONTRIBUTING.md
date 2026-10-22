@@ -77,6 +77,35 @@ Both suites run in CI on every pull request and must pass.
 5. Say what you tested it on. "Built and installed on a Mi TV 4A Pro, Android 9" is worth more than
    a green tick, because this software's problems are mostly about real devices and real networks.
 
+## Versioning and releases
+
+The version lives in one place: the [`VERSION`](VERSION) file at the repository root.
+
+- Both Android projects read it at build time through `tools/version.gradle`, which also derives
+  `versionCode` from it (1.2.3 becomes 10203).
+- The Python server carries a literal, so it can stay a single file with no imports beyond the
+  standard library. A test asserts it matches `VERSION`, and fails with the line to edit if not.
+
+The project follows [semantic versioning](https://semver.org/). The HTTP API is the public
+interface: changing the shape of `/api/movies`, or how ranges are answered, is a breaking change,
+because a TV app in the wild may be older than the server it is pointed at.
+
+### Cutting a release
+
+1. Update `VERSION`.
+2. Update `server/movieserve.py`'s `__version__` to match — the test will tell you if you forget.
+3. Move the `Unreleased` entries in [`CHANGELOG.md`](CHANGELOG.md) under the new version with
+   today's date.
+4. Merge to `main`.
+5. Tag and push: `git tag v1.2.3 && git push origin v1.2.3`.
+
+Pushing the tag builds both apps, names the APKs after the version, pulls that version's section
+out of the changelog for the notes, and publishes a GitHub release. It refuses to run if the tag
+does not match `VERSION`, so a mistyped tag fails loudly instead of shipping artefacts labelled
+with the wrong number.
+
+A tag containing a hyphen (`v1.3.0-beta1`) is published as a pre-release.
+
 ## Reporting bugs
 
 Use the issue templates. For playback problems, the single most useful detail is what the TV's
