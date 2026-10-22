@@ -107,7 +107,37 @@ public class MainActivity extends Activity implements MovieAdapter.OnMovieSelect
         list.setVisibility(View.VISIBLE);
         status.setVisibility(View.GONE);
         statusAction.setVisibility(View.GONE);
-        list.requestFocus();
+        focusFirstRow(0);
+    }
+
+    /**
+     * Put the remote on the first film.
+     *
+     * <p>Asking the list for focus the moment the data arrives does not work: a RecyclerView has no
+     * children until it has laid out, so there is nothing in it to focus and the request falls
+     * through to the first focusable view on screen, which is the Settings button. Pressing OK then
+     * opens settings instead of playing anything, which looks exactly like the app being broken.
+     *
+     * <p>So wait for the children to exist, retrying a few frames before giving up rather than
+     * looping forever on a list that really is empty.
+     */
+    private void focusFirstRow(int attempt) {
+        if (attempt > 10) {
+            return;
+        }
+        list.post(() -> {
+            if (isFinishing()) {
+                return;
+            }
+            for (int i = 0; i < list.getChildCount(); i++) {
+                View child = list.getChildAt(i);
+                if (child.isFocusable() && child.getVisibility() == View.VISIBLE) {
+                    child.requestFocus();
+                    return;
+                }
+            }
+            focusFirstRow(attempt + 1);     // not laid out yet, or only headers so far
+        });
     }
 
     private void showStatus(String message, String actionLabel, Runnable action) {
