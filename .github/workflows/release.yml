@@ -58,9 +58,11 @@ jobs:
           mkdir -p "$HOME/.movieserve"
           echo "$KEYSTORE_BASE64" | base64 --decode > "$HOME/.movieserve/release.keystore"
           chmod 600 "$HOME/.movieserve/release.keystore"
-          # Pass the path on through the environment file rather than a ${{ }} expression: the
-          # env context does not carry system variables, so ${{ env.HOME }} expands to nothing and
-          # Gradle quietly builds unsigned instead of failing.
+          # Pass the path on through the environment file rather than a workflow expression. The
+          # env context does not carry system variables, so an expression referring to env.HOME
+          # expands to nothing and Gradle quietly builds unsigned instead of failing.
+          # (Written out in words on purpose: GitHub evaluates expression syntax even inside a
+          # shell comment, and an empty one makes the whole workflow file invalid.)
           echo "MOVIESERVE_KEYSTORE=$HOME/.movieserve/release.keystore" >> "$GITHUB_ENV"
 
       - name: Build the TV app
