@@ -73,6 +73,20 @@ It shows up in the app under a **Link** heading, and the TV streams it straight 
 It must be a link to a video *file* — a YouTube or streaming-site page will not play, because VLC
 is handed the URL as-is.
 
+## Or serve from an Android phone
+
+Not everyone has a laptop to hand. [`phone-app/`](phone-app/) does the same job from an Android
+phone: pick a folder, optionally add a web link, press start, and read the address out to whoever
+is holding the remote.
+
+It speaks exactly the same two endpoints, so **the TV app cannot tell the difference** and needs no
+setting changed beyond the address. A foreground service and a wake lock keep it serving once the
+screen goes off.
+
+There is no iOS version, and there probably cannot be a useful one: Apple suspends an app about
+30 seconds after it leaves the foreground, and its engineers state there is no way to wake it when
+a connection arrives. An iPhone could push a link to the TV, but it cannot reliably serve a film.
+
 ## Why not just use a file share?
 
 You can, and if SMB or DLNA already works for you, keep using it. This exists because those are
@@ -113,6 +127,7 @@ what your TV actually has.
 | | |
 |---|---|
 | Laptop | Python 3.9 or newer. Nothing else. |
+| Or a phone | Android 7.0+, using `phone-app/` instead |
 | TV | Android 5.0+ with VLC installed, on the same network |
 | Building the app | JDK 17 and the Android SDK (`platforms;android-34`, `build-tools;34.x`) |
 

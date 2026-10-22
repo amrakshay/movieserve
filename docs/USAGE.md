@@ -95,6 +95,35 @@ example `http://192.168.0.116:18080`. The scheme can be left out; `http://` is a
 
 The address is remembered. If your laptop's IP changes, come back and edit it.
 
+## Serving from an Android phone instead
+
+Build and install `phone-app/` the same way as the TV app:
+
+```bash
+cd phone-app
+./gradlew assembleRelease
+adb install -r app/build/outputs/apk/release/app-release.apk
+```
+
+Then on the phone: **Choose folder**, optionally paste a web link, and **Start server**. The
+address to type into the TV is shown on screen.
+
+The folder is picked through Android's Storage Access Framework, so the app can read that folder
+and nothing else. The permission is kept across restarts, so you only pick it once.
+
+### Things to know
+
+- A **foreground service** keeps it serving when the screen goes off, with an ongoing notification
+  that also stops it. A **wake lock** stops the CPU dozing mid-film; the service alone is not
+  enough for that.
+- **On OnePlus, Xiaomi, Samsung and others, battery optimisation can still kill it.** If playback
+  dies partway through a film, exempt the app: Settings, Battery, Battery optimisation, movieserve,
+  Don't optimise.
+- Phones sleep their Wi-Fi radio aggressively when idle. Latency to a phone sitting untouched can
+  be hundreds of milliseconds; it recovers once the server holds its wake lock.
+- The phone is doing the serving, so expect battery drain and some warmth over a long film. Charge
+  it if you can.
+
 ## The API
 
 Two endpoints, if you want to build something else against it.
