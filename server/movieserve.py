@@ -234,6 +234,19 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(payload)
 
+    def handle_one_request(self) -> None:
+        """Read and answer one request, treating a hung-up player as routine.
+
+        A video player closes the connection whenever it seeks, pauses or stops, and with
+        keep-alive it does so while the server is waiting for the next request on that socket.
+        The read then fails inside http.server, which would print a full traceback for something
+        entirely normal: observed on a real TV as a wall of ConnectionResetError on every seek.
+        """
+        try:
+            super().handle_one_request()
+        except (BrokenPipeError, ConnectionResetError):
+            self.close_connection = True
+
     def log_message(self, fmt: str, *args) -> None:
         # One tidy line per request instead of the default's date banner.
         sys.stderr.write(f"{self.address_string()} {fmt % args}\n")
@@ -324,12 +337,22 @@ def lan_address() -> str:
         probe.close()
 
 
+class Server(ThreadingHTTPServer):
+    """ThreadingHTTPServer that does not shout about players hanging up."""
+
+    def handle_error(self, request, client_address) -> None:
+        kind = sys.exc_info()[0]
+        if kind is not None and issubclass(kind, (BrokenPipeError, ConnectionResetError)):
+            return      # a player closed the connection; nothing went wrong
+        super().handle_error(request, client_address)
+
+
 def build_server(directory: Path | None, host: str, port: int,
-                 video_url: str | None = None) -> ThreadingHTTPServer:
+                 video_url: str | None = None) -> Server:
     """A server ready to `serve_forever`. Separated out so tests can bind port 0."""
     library = Library(directory, video_url)
     handler = type("BoundHandler", (Handler,), {"library": library})
-    httpd = ThreadingHTTPServer((host, port), handler)
+    httpd = Server((host, port), handler)
     httpd.daemon_threads = True     # a stuck stream must not keep the process alive
     return httpd
 

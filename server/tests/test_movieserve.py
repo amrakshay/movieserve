@@ -281,6 +281,21 @@ class HttpTests(unittest.TestCase):
             self.get("/nope")
         self.assertEqual(caught.exception.code, 404)
 
+    def test_a_player_hanging_up_mid_stream_is_not_an_error(self):
+        """A seek closes the connection while the server is still writing.
+
+        Observed on a real TV: VLC drops the socket on every seek, which used to print a
+        ConnectionResetError traceback per seek. The server must carry on serving others.
+        """
+        import socket
+        sock = socket.create_connection(("127.0.0.1", self.httpd.server_address[1]), timeout=10)
+        sock.sendall(b"GET /stream/Films/Demo.mkv HTTP/1.1\r\nHost: x\r\n\r\n")
+        sock.recv(64)          # take only the first bytes, then walk away mid-body
+        sock.close()
+        # The next request must still be answered normally.
+        with self.get("/api/movies") as response:
+            self.assertEqual(response.status, 200)
+
     def test_traversal_is_refused(self):
         with self.assertRaises(urllib.error.HTTPError) as caught:
             self.get("/stream/..%2F..%2Fetc%2Fpasswd")

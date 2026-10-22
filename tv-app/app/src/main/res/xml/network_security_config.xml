@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Android blocks plain HTTP by default for apps targeting SDK 28 and above. This app exists to talk
+  to a small HTTP server on the same home network, at an address the owner types in, so cleartext
+  has to be allowed or nothing works at all.
+
+  It cannot be narrowed to a domain list, because the server lives at whatever address the laptop
+  happens to have, and that changes. HTTPS is not an option either: it would mean a certificate for
+  a private IP, which is a worse trade for a tool whose traffic never leaves the house.
+
+  The risk this accepts is the one already documented in SECURITY.md, that traffic between the
+  laptop and the TV is unencrypted on the local network.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>
