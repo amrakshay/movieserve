@@ -44,6 +44,17 @@ jobs:
           # sdkmanager fails the job rather than skipping it. Name what the build actually needs.
           packages: 'platform-tools platforms;android-34 build-tools;34.0.0'
 
+      - name: Create a debug keystore for signing
+        run: |
+          # A fresh runner has none, and an unsigned APK cannot be installed. This is a throwaway
+          # key generated per run, which is fine for sideloading and is called out in the release
+          # notes; a real signing key belongs in repository secrets.
+          mkdir -p ~/.android
+          keytool -genkeypair -v -keystore ~/.android/debug.keystore \
+            -storepass android -keypass android -alias androiddebugkey \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=movieserve, OU=movieserve, O=movieserve, L=, S=, C=US"
+
       - name: Build the TV app
         working-directory: tv-app
         run: ./gradlew test assembleRelease --console=plain
@@ -73,6 +84,15 @@ jobs:
           if [ ! -s release-notes.md ]; then
             echo "No changelog section for $TAG; falling back to a generated list." > release-notes.md
           fi
+          {
+            echo ""
+            echo "### About these APKs"
+            echo ""
+            echo "They are signed with a throwaway debug key generated during the build, which is"
+            echo "enough to sideload them. The key differs between releases, so upgrading in place"
+            echo "will be refused with a signature mismatch: uninstall the old version first."
+            echo "Set a real signing key in repository secrets if you want upgrades to work."
+          } >> release-notes.md
           cat release-notes.md
 
       - uses: softprops/action-gh-release@v2

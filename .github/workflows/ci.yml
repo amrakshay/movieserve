@@ -70,6 +70,17 @@ jobs:
           # sdkmanager fails the job rather than skipping it. Name what the build actually needs.
           packages: 'platform-tools platforms;android-34 build-tools;34.0.0'
 
+      - name: Create a debug keystore for signing
+        run: |
+          # A fresh runner has none, and an unsigned APK cannot be installed. This is a throwaway
+          # key generated per run, which is fine for sideloading and is called out in the release
+          # notes; a real signing key belongs in repository secrets.
+          mkdir -p ~/.android
+          keytool -genkeypair -v -keystore ~/.android/debug.keystore \
+            -storepass android -keypass android -alias androiddebugkey \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=movieserve, OU=movieserve, O=movieserve, L=, S=, C=US"
+
       - name: Unit tests
         working-directory: phone-app
         run: ./gradlew test --console=plain
@@ -100,6 +111,17 @@ jobs:
           # The action's default package list includes "tools", which Google has retired, and
           # sdkmanager fails the job rather than skipping it. Name what the build actually needs.
           packages: 'platform-tools platforms;android-34 build-tools;34.0.0'
+
+      - name: Create a debug keystore for signing
+        run: |
+          # A fresh runner has none, and an unsigned APK cannot be installed. This is a throwaway
+          # key generated per run, which is fine for sideloading and is called out in the release
+          # notes; a real signing key belongs in repository secrets.
+          mkdir -p ~/.android
+          keytool -genkeypair -v -keystore ~/.android/debug.keystore \
+            -storepass android -keypass android -alias androiddebugkey \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=movieserve, OU=movieserve, O=movieserve, L=, S=, C=US"
 
       - name: Unit tests
         working-directory: tv-app
