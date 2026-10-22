@@ -1,0 +1,4 @@
+#Thu Oct 22 19:47:08 IST 2026
+base.0=/Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

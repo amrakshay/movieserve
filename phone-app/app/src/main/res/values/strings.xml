@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">movieserve</string>
+
+    <string name="folder_heading">Folder to share</string>
+    <string name="no_folder">No folder chosen yet</string>
+    <string name="whole_storage">Whole storage</string>
+    <string name="pick_folder">Choose folder</string>
+    <string name="counting">Counting…</string>
+    <string name="count_format">%1$d video(s)</string>
+    <string name="plus_link">, plus a link</string>
+
+    <string name="link_heading">Web link (optional)</string>
+    <string name="url_hint">https://example.com/movie.mp4</string>
+    <string name="save">Save</string>
+    <string name="saved">Saved</string>
+    <string name="bad_url">That is not an http or https address</string>
+
+    <string name="start_server">Start server</string>
+    <string name="stop_server">Stop server</string>
+    <string name="serving">Serving</string>
+    <string name="stopped">Stopped</string>
+    <string name="no_network">Not on a network</string>
+    <string name="enter_on_tv">Enter this on the TV</string>
+    <string name="nothing_to_serve">Choose a folder or add a link first</string>
+    <string name="no_file_picker">This phone has no folder picker</string>
+    <string name="error_port_busy">Port %1$d is already in use. Stop whatever is using it and try again.</string>
+
+    <string name="notification_title">movieserve</string>
+    <string name="notification_starting">Starting…</string>
+    <string name="stop">Stop</string>
+    <string name="channel_name">Server running</string>
+    <string name="channel_description">Shown while the phone is sharing videos</string>
+
+    <string name="hint_footer">Keep this app installed and the server running while you watch. Anyone on this network can list and download the shared folder.</string>
+</resources>

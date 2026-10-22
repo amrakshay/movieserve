@@ -1,0 +1,390 @@
+# compiler: R8
+# compiler_version: 8.5.35
+# min_api: 24
+# common_typos_disable
+# {"id":"com.android.tools.r8.mapping","version":"2.2"}
+# pg_map_id: 72b8211
+# pg_map_hash: SHA-256 72b821183e803f0e1b34dac1ee08a0f2ed518daa1619fe8564d71ff2d133e00d
+androidx.annotation.Keep -> a.a:
+# {"id":"sourceFile","fileName":"Keep.java"}
+androidx.documentfile.provider.DocumentFile -> R8$$REMOVED$$CLASS$$0:
+# {"id":"sourceFile","fileName":"DocumentFile.java"}
+androidx.documentfile.provider.DocumentsContractApi19 -> b.a:
+# {"id":"sourceFile","fileName":"DocumentsContractApi19.java"}
+    3:9:void closeQuietly(java.lang.AutoCloseable):0:0 -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/database/Cursor;)V"}
+    1:1:boolean com.amrakshay.movieserve.phone.Prefs.isPlayableUrl(java.lang.String):0:0 -> b
+    1:1:java.lang.String com.amrakshay.movieserve.phone.Prefs.normalise(java.lang.String):0:0 -> c
+    1:1:java.lang.String queryForString(android.content.Context,android.net.Uri,java.lang.String,java.lang.String):0:0 -> d
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/content/Context;Landroid/net/Uri;Ljava/lang/String;)Ljava/lang/String;"}
+    1:1:java.lang.String com.amrakshay.movieserve.phone.Net.lanAddress():0:0 -> e
+    1:1:java.lang.String com.amrakshay.movieserve.phone.Net.serverUrl():0 -> e
+    2:2:java.lang.String com.amrakshay.movieserve.phone.Net.serverUrl():0:0 -> e
+    1:1:android.content.SharedPreferences com.amrakshay.movieserve.phone.Prefs.of(android.content.Context):0:0 -> f
+    1:1:android.net.Uri com.amrakshay.movieserve.phone.Prefs.tree(android.content.Context):0 -> f
+    2:2:android.net.Uri com.amrakshay.movieserve.phone.Prefs.tree(android.content.Context):0:0 -> f
+    1:7:android.content.SharedPreferences com.amrakshay.movieserve.phone.Prefs.of(android.content.Context):0:0 -> g
+    1:7:java.lang.String com.amrakshay.movieserve.phone.Prefs.videoUrl(android.content.Context):0 -> g
+    8:16:java.lang.String com.amrakshay.movieserve.phone.Prefs.videoUrl(android.content.Context):0:0 -> g
+androidx.documentfile.provider.TreeDocumentFile -> b.b:
+# {"id":"sourceFile","fileName":"TreeDocumentFile.java"}
+    android.content.Context mContext -> a
+    android.net.Uri mUri -> b
+    1:3:void androidx.documentfile.provider.DocumentFile.<init>(androidx.documentfile.provider.DocumentFile):0:0 -> <init>
+    1:3:void <init>(androidx.documentfile.provider.DocumentFile,android.content.Context,android.net.Uri):0 -> <init>
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/content/Context;Landroid/net/Uri;)V"}
+    4:8:void <init>(androidx.documentfile.provider.DocumentFile,android.content.Context,android.net.Uri):0:0 -> <init>
+com.amrakshay.movieserve.phone.HttpServer -> c.b:
+# {"id":"sourceFile","fileName":"HttpServer.java"}
+    android.content.Context context -> a
+    int port -> b
+    java.util.concurrent.atomic.AtomicBoolean running -> c
+    java.util.concurrent.ExecutorService workers -> d
+    java.net.ServerSocket socket -> e
+    com.amrakshay.movieserve.phone.Library library -> f
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lc/e;"}
+    1:30:void <init>(android.content.Context,int,com.amrakshay.movieserve.phone.Library):0:0 -> <init>
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/content/Context;Lc/e;)V"}
+    1:1:java.lang.String contentType(java.lang.String):0:0 -> a
+    1:1:java.lang.String readLine(java.io.InputStream):0:0 -> b
+    1:1:void send(java.io.OutputStream,int,java.lang.String,java.lang.String,byte[],boolean):0:0 -> c
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Ljava/io/BufferedOutputStream;ILjava/lang/String;Ljava/lang/String;[BZ)V"}
+    1:1:android.net.Uri findInLibrary(java.lang.String):0:0 -> d
+    1:1:void stream(java.io.OutputStream,java.lang.String,java.lang.String,boolean):0 -> d
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Ljava/io/BufferedOutputStream;Ljava/lang/String;Ljava/lang/String;Z)V"}
+    2:2:void stream(java.io.OutputStream,java.lang.String,java.lang.String,boolean):0:0 -> d
+    3:3:boolean com.amrakshay.movieserve.phone.Range$Result.isPartial():0:0 -> d
+    3:3:void stream(java.io.OutputStream,java.lang.String,java.lang.String,boolean):0 -> d
+    4:4:void stream(java.io.OutputStream,java.lang.String,java.lang.String,boolean):0:0 -> d
+    5:5:boolean com.amrakshay.movieserve.phone.Range$Result.isPartial():0:0 -> d
+    5:5:void stream(java.io.OutputStream,java.lang.String,java.lang.String,boolean):0 -> d
+    6:6:void stream(java.io.OutputStream,java.lang.String,java.lang.String,boolean):0:0 -> d
+    7:7:boolean com.amrakshay.movieserve.phone.Range$Result.isPartial():0:0 -> d
+    7:7:void stream(java.io.OutputStream,java.lang.String,java.lang.String,boolean):0 -> d
+    8:8:void stream(java.io.OutputStream,java.lang.String,java.lang.String,boolean):0:0 -> d
+com.amrakshay.movieserve.phone.HttpServer$$ExternalSyntheticLambda1 -> c.a:
+# {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
+# {"id":"com.android.tools.r8.synthesized"}
+    int c.HttpServer$$ExternalSyntheticLambda1.$r8$classId -> a
+      # {"id":"com.android.tools.r8.synthesized"}
+    com.amrakshay.movieserve.phone.HttpServer com.amrakshay.movieserve.phone.HttpServer$$InternalSyntheticLambda$2$5e15572377836141372431aff1600f3b44c4bcfe500ee58d08b89702c56f5b54$0.f$0 -> b
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Ljava/lang/Object;"}
+      # {"id":"com.android.tools.r8.synthesized"}
+    java.net.Socket com.amrakshay.movieserve.phone.HttpServer$$InternalSyntheticLambda$2$5e15572377836141372431aff1600f3b44c4bcfe500ee58d08b89702c56f5b54$0.f$1 -> c
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Ljava/lang/Object;"}
+      # {"id":"com.android.tools.r8.synthesized"}
+    1:1:void c.HttpServer$$ExternalSyntheticLambda1.<init>(java.lang.Object,java.lang.Object,int):0:0 -> <init>
+      # {"id":"com.android.tools.r8.synthesized"}
+    1:1:void com.amrakshay.movieserve.phone.MainActivity.lambda$render$3(java.lang.String):0:0 -> run
+    1:1:void c.HttpServer$$ExternalSyntheticLambda1.run():0 -> run
+      # {"id":"com.android.tools.r8.synthesized"}
+    2:2:void c.HttpServer$$ExternalSyntheticLambda1.run():0:0 -> run
+    3:3:void com.amrakshay.movieserve.phone.HttpServer.handle(java.net.Socket):0:0 -> run
+    3:3:void com.amrakshay.movieserve.phone.HttpServer.lambda$acceptLoop$0(java.net.Socket):0 -> run
+    3:3:void c.HttpServer$$ExternalSyntheticLambda1.run():0 -> run
+    4:4:java.lang.String com.amrakshay.movieserve.phone.HttpServer.decode(java.lang.String):0:0 -> run
+    4:4:void com.amrakshay.movieserve.phone.HttpServer.handle(java.net.Socket):0 -> run
+    4:4:void com.amrakshay.movieserve.phone.HttpServer.lambda$acceptLoop$0(java.net.Socket):0 -> run
+    4:4:void c.HttpServer$$ExternalSyntheticLambda1.run():0 -> run
+    5:5:void com.amrakshay.movieserve.phone.HttpServer.handle(java.net.Socket):0:0 -> run
+    5:5:void com.amrakshay.movieserve.phone.HttpServer.lambda$acceptLoop$0(java.net.Socket):0 -> run
+    5:5:void c.HttpServer$$ExternalSyntheticLambda1.run():0 -> run
+com.amrakshay.movieserve.phone.Library -> c.e:
+# {"id":"sourceFile","fileName":"Library.java"}
+    android.content.Context context -> a
+    android.net.Uri tree -> b
+    java.lang.String videoUrl -> c
+    java.util.List VIDEO_SUFFIXES -> d
+    1:1:void <clinit>():0:0 -> <clinit>
+    1:1:void <init>(android.content.Context,android.net.Uri,java.lang.String):0:0 -> <init>
+    1:1:androidx.documentfile.provider.DocumentFile androidx.documentfile.provider.DocumentFile.fromTreeUri(android.content.Context,android.net.Uri):0:0 -> a
+    1:1:java.util.ArrayList c.Library.entries():0 -> a
+      # {"id":"com.android.tools.r8.synthesized"}
+    2:2:java.lang.String androidx.documentfile.provider.DocumentsContractApi19.getRawType(android.content.Context,android.net.Uri):0:0 -> a
+    2:2:boolean androidx.documentfile.provider.DocumentsContractApi19.isDirectory(android.content.Context,android.net.Uri):0 -> a
+    2:2:boolean androidx.documentfile.provider.TreeDocumentFile.isDirectory():0 -> a
+    2:2:java.util.ArrayList c.Library.entries():0 -> a
+    3:3:boolean androidx.documentfile.provider.DocumentsContractApi19.isDirectory(android.content.Context,android.net.Uri):0:0 -> a
+    3:3:boolean androidx.documentfile.provider.TreeDocumentFile.isDirectory():0 -> a
+    3:3:java.util.ArrayList c.Library.entries():0 -> a
+    4:4:java.util.ArrayList c.Library.entries():0:0 -> a
+    5:5:void com.amrakshay.movieserve.phone.Library$1.<init>(com.amrakshay.movieserve.phone.Library):0:0 -> a
+    5:5:java.util.List entries():0 -> a
+    5:5:java.util.ArrayList c.Library.entries():0 -> a
+    6:6:java.util.List entries():0:0 -> a
+    6:6:java.util.ArrayList c.Library.entries():0 -> a
+    7:7:com.amrakshay.movieserve.phone.Library$Entry linkEntry(java.lang.String):0:0 -> a
+    7:7:java.util.List entries():0 -> a
+    7:7:java.util.ArrayList c.Library.entries():0 -> a
+    8:8:java.util.List entries():0:0 -> a
+    8:8:java.util.ArrayList c.Library.entries():0 -> a
+    1:1:java.lang.String rootName():0:0 -> b
+    1:1:java.lang.String toJson(java.util.List):0 -> b
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Ljava/util/ArrayList;)Ljava/lang/String;"}
+    2:2:androidx.documentfile.provider.DocumentFile androidx.documentfile.provider.DocumentFile.fromTreeUri(android.content.Context,android.net.Uri):0:0 -> b
+    2:2:java.lang.String rootName():0 -> b
+    2:2:java.lang.String toJson(java.util.List):0 -> b
+    3:3:java.lang.String androidx.documentfile.provider.DocumentsContractApi19.getName(android.content.Context,android.net.Uri):0:0 -> b
+    3:3:java.lang.String androidx.documentfile.provider.TreeDocumentFile.getName():0 -> b
+    3:3:java.lang.String rootName():0 -> b
+    3:3:java.lang.String toJson(java.util.List):0 -> b
+    4:4:java.lang.String rootName():0:0 -> b
+    4:4:java.lang.String toJson(java.util.List):0 -> b
+    5:5:java.lang.String toJson(java.util.List):0:0 -> b
+    1:1:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0:0 -> c
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lb/b;Ljava/lang/String;Ljava/util/ArrayList;)V"}
+    2:2:androidx.documentfile.provider.DocumentFile[] androidx.documentfile.provider.TreeDocumentFile.listFiles():0:0 -> c
+    2:2:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0 -> c
+    3:3:void androidx.documentfile.provider.TreeDocumentFile.closeQuietly(java.lang.AutoCloseable):0:0 -> c
+    3:3:androidx.documentfile.provider.DocumentFile[] androidx.documentfile.provider.TreeDocumentFile.listFiles():0 -> c
+    3:3:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0 -> c
+    4:4:androidx.documentfile.provider.DocumentFile[] androidx.documentfile.provider.TreeDocumentFile.listFiles():0:0 -> c
+    4:4:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0 -> c
+    5:5:void androidx.documentfile.provider.TreeDocumentFile.closeQuietly(java.lang.AutoCloseable):0:0 -> c
+    5:5:androidx.documentfile.provider.DocumentFile[] androidx.documentfile.provider.TreeDocumentFile.listFiles():0 -> c
+    5:5:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0 -> c
+    6:6:androidx.documentfile.provider.DocumentFile[] androidx.documentfile.provider.TreeDocumentFile.listFiles():0:0 -> c
+    6:6:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0 -> c
+    7:7:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0:0 -> c
+    8:8:java.lang.String androidx.documentfile.provider.DocumentsContractApi19.getName(android.content.Context,android.net.Uri):0:0 -> c
+    8:8:java.lang.String androidx.documentfile.provider.TreeDocumentFile.getName():0 -> c
+    8:8:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0 -> c
+    9:9:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0:0 -> c
+    10:10:java.lang.String androidx.documentfile.provider.DocumentsContractApi19.getRawType(android.content.Context,android.net.Uri):0:0 -> c
+    10:10:boolean androidx.documentfile.provider.DocumentsContractApi19.isDirectory(android.content.Context,android.net.Uri):0 -> c
+    10:10:boolean androidx.documentfile.provider.TreeDocumentFile.isDirectory():0 -> c
+    10:10:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0 -> c
+    11:11:boolean androidx.documentfile.provider.DocumentsContractApi19.isDirectory(android.content.Context,android.net.Uri):0:0 -> c
+    11:11:boolean androidx.documentfile.provider.TreeDocumentFile.isDirectory():0 -> c
+    11:11:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0 -> c
+    12:12:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0:0 -> c
+    13:13:boolean isVideo(java.lang.String):0:0 -> c
+    13:13:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0 -> c
+    14:14:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0:0 -> c
+    15:15:long androidx.documentfile.provider.TreeDocumentFile.length():0:0 -> c
+    15:15:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0 -> c
+    16:16:long androidx.documentfile.provider.DocumentsContractApi19.length(android.content.Context,android.net.Uri):0:0 -> c
+    16:16:long androidx.documentfile.provider.TreeDocumentFile.length():0 -> c
+    16:16:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0 -> c
+    17:17:long androidx.documentfile.provider.DocumentsContractApi19.queryForLong(android.content.Context,android.net.Uri,java.lang.String,long):0:0 -> c
+    17:17:long androidx.documentfile.provider.DocumentsContractApi19.length(android.content.Context,android.net.Uri):0 -> c
+    17:17:long androidx.documentfile.provider.TreeDocumentFile.length():0 -> c
+    17:17:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0 -> c
+    18:18:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0:0 -> c
+    19:19:java.lang.String encode(java.lang.String):0:0 -> c
+    19:19:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0 -> c
+    20:20:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0:0 -> c
+    21:21:long androidx.documentfile.provider.DocumentsContractApi19.queryForLong(android.content.Context,android.net.Uri,java.lang.String,long):0:0 -> c
+    21:21:long androidx.documentfile.provider.DocumentsContractApi19.length(android.content.Context,android.net.Uri):0 -> c
+    21:21:long androidx.documentfile.provider.TreeDocumentFile.length():0 -> c
+    21:21:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0 -> c
+    22:22:void androidx.documentfile.provider.TreeDocumentFile.closeQuietly(java.lang.AutoCloseable):0:0 -> c
+    22:22:androidx.documentfile.provider.DocumentFile[] androidx.documentfile.provider.TreeDocumentFile.listFiles():0 -> c
+    22:22:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0 -> c
+    23:23:androidx.documentfile.provider.DocumentFile[] androidx.documentfile.provider.TreeDocumentFile.listFiles():0:0 -> c
+    23:23:void walk(androidx.documentfile.provider.DocumentFile,java.lang.String,java.util.List):0 -> c
+com.amrakshay.movieserve.phone.Library$1 -> c.c:
+# {"id":"sourceFile","fileName":"Library.java"}
+    5:42:int compare(com.amrakshay.movieserve.phone.Library$Entry,com.amrakshay.movieserve.phone.Library$Entry):0:0 -> compare
+    5:42:int compare(java.lang.Object,java.lang.Object):0 -> compare
+com.amrakshay.movieserve.phone.Library$Entry -> c.d:
+# {"id":"sourceFile","fileName":"Library.java"}
+    java.lang.String name -> a
+    java.lang.String folder -> b
+    java.lang.String path -> c
+    long size -> d
+    java.lang.String url -> e
+    android.net.Uri content -> f
+    1:1:void <init>(java.lang.String,java.lang.String,java.lang.String,long,java.lang.String,android.net.Uri):0:0 -> <init>
+com.amrakshay.movieserve.phone.MainActivity -> com.amrakshay.movieserve.phone.MainActivity:
+# {"id":"sourceFile","fileName":"MainActivity.java"}
+    java.util.concurrent.ExecutorService io -> a
+    android.os.Handler ui -> b
+    android.widget.TextView folderLabel -> c
+    android.widget.TextView countLabel -> d
+    android.widget.TextView addressLabel -> e
+    android.widget.TextView stateLabel -> f
+    android.widget.EditText urlField -> g
+    android.widget.Button toggle -> h
+    android.content.BroadcastReceiver stateReceiver -> i
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lc/i;"}
+    int $r8$clinit -> j
+      # {"id":"com.android.tools.r8.synthesized"}
+    1:1:java.lang.String readableFolder(android.net.Uri):0:0 -> a
+    1:1:void render():0 -> a
+    2:2:void render():0:0 -> a
+    3:3:boolean com.amrakshay.movieserve.phone.ServerService.isRunning():0:0 -> a
+    3:3:void render():0 -> a
+    4:4:void render():0:0 -> a
+    1:1:android.content.SharedPreferences com.amrakshay.movieserve.phone.Prefs.of(android.content.Context):0:0 -> onActivityResult
+    1:1:void com.amrakshay.movieserve.phone.Prefs.setTree(android.content.Context,android.net.Uri):0 -> onActivityResult
+    1:1:void onActivityResult(int,int,android.content.Intent):0 -> onActivityResult
+    2:2:void com.amrakshay.movieserve.phone.Prefs.setTree(android.content.Context,android.net.Uri):0:0 -> onActivityResult
+    2:2:void onActivityResult(int,int,android.content.Intent):0 -> onActivityResult
+    3:3:boolean com.amrakshay.movieserve.phone.ServerService.isRunning():0:0 -> onActivityResult
+    3:3:void onActivityResult(int,int,android.content.Intent):0 -> onActivityResult
+    4:4:void onActivityResult(int,int,android.content.Intent):0:0 -> onActivityResult
+    1:1:void askForNotificationPermission():0:0 -> onCreate
+    1:1:void onCreate(android.os.Bundle):0 -> onCreate
+com.amrakshay.movieserve.phone.MainActivity$$ExternalSyntheticApiModelOutline0 -> c.f:
+# {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
+# {"id":"com.android.tools.r8.synthesized"}
+    1:1:android.app.Notification$Builder c.MainActivity$$ExternalSyntheticApiModelOutline0.m(android.content.Context):0:0 -> a
+      # {"id":"com.android.tools.r8.synthesized"}
+    1:1:android.app.NotificationChannel c.MainActivity$$ExternalSyntheticApiModelOutline0.m(android.app.NotificationManager):0:0 -> b
+      # {"id":"com.android.tools.r8.synthesized"}
+    1:1:android.app.NotificationChannel c.MainActivity$$ExternalSyntheticApiModelOutline0.m(java.lang.String):0:0 -> c
+      # {"id":"com.android.tools.r8.synthesized"}
+    1:1:void c.MainActivity$$ExternalSyntheticApiModelOutline0.m():0:0 -> d
+      # {"id":"com.android.tools.r8.synthesized"}
+    1:1:void c.MainActivity$$ExternalSyntheticApiModelOutline0.m(android.app.NotificationChannel):0:0 -> e
+      # {"id":"com.android.tools.r8.synthesized"}
+    1:1:void c.MainActivity$$ExternalSyntheticApiModelOutline0.m(android.app.NotificationChannel,java.lang.String):0:0 -> f
+      # {"id":"com.android.tools.r8.synthesized"}
+    1:1:void c.MainActivity$$ExternalSyntheticApiModelOutline0.m(android.app.NotificationManager,android.app.NotificationChannel):0:0 -> g
+      # {"id":"com.android.tools.r8.synthesized"}
+    1:1:void c.MainActivity$$ExternalSyntheticApiModelOutline0.m(android.content.Context,android.content.Intent):0:0 -> h
+      # {"id":"com.android.tools.r8.synthesized"}
+    1:1:void c.MainActivity$$ExternalSyntheticApiModelOutline0.m(com.amrakshay.movieserve.phone.MainActivity,c.MainActivity$1,android.content.IntentFilter):0:0 -> i
+      # {"id":"com.android.tools.r8.synthesized"}
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lcom/amrakshay/movieserve/phone/MainActivity;Lc/i;Landroid/content/IntentFilter;)V"}
+com.amrakshay.movieserve.phone.MainActivity$$ExternalSyntheticLambda1 -> c.g:
+# {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
+# {"id":"com.android.tools.r8.synthesized"}
+    int c.MainActivity$$ExternalSyntheticLambda1.$r8$classId -> a
+      # {"id":"com.android.tools.r8.synthesized"}
+    com.amrakshay.movieserve.phone.MainActivity com.amrakshay.movieserve.phone.MainActivity$$InternalSyntheticLambda$1$42b5a97c3f5683ffa2c290e037641053778a0c771f3da4ebaa056d1543b303a5$0.f$0 -> b
+      # {"id":"com.android.tools.r8.synthesized"}
+    1:1:void c.MainActivity$$ExternalSyntheticLambda1.<init>(com.amrakshay.movieserve.phone.MainActivity,int):0:0 -> <init>
+      # {"id":"com.android.tools.r8.synthesized"}
+    1:1:boolean com.amrakshay.movieserve.phone.ServerService.isRunning():0:0 -> onClick
+    1:1:void com.amrakshay.movieserve.phone.MainActivity.toggleServer():0 -> onClick
+    1:1:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$2(android.view.View):0 -> onClick
+    1:1:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
+      # {"id":"com.android.tools.r8.synthesized"}
+    2:2:void com.amrakshay.movieserve.phone.ServerService.stop(android.content.Context):0:0 -> onClick
+    2:2:void com.amrakshay.movieserve.phone.MainActivity.toggleServer():0 -> onClick
+    2:2:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$2(android.view.View):0 -> onClick
+    2:2:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
+    3:3:void com.amrakshay.movieserve.phone.MainActivity.toggleServer():0:0 -> onClick
+    3:3:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$2(android.view.View):0 -> onClick
+    3:3:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
+    4:4:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0:0 -> onClick
+    5:5:void com.amrakshay.movieserve.phone.MainActivity.saveUrl():0:0 -> onClick
+    5:5:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$1(android.view.View):0 -> onClick
+    5:5:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
+    6:6:android.content.SharedPreferences com.amrakshay.movieserve.phone.Prefs.of(android.content.Context):0:0 -> onClick
+    6:6:void com.amrakshay.movieserve.phone.Prefs.setVideoUrl(android.content.Context,java.lang.String):0 -> onClick
+    6:6:void com.amrakshay.movieserve.phone.MainActivity.saveUrl():0 -> onClick
+    6:6:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$1(android.view.View):0 -> onClick
+    6:6:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
+    7:7:void com.amrakshay.movieserve.phone.Prefs.setVideoUrl(android.content.Context,java.lang.String):0:0 -> onClick
+    7:7:void com.amrakshay.movieserve.phone.MainActivity.saveUrl():0 -> onClick
+    7:7:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$1(android.view.View):0 -> onClick
+    7:7:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
+    8:8:void com.amrakshay.movieserve.phone.MainActivity.saveUrl():0:0 -> onClick
+    8:8:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$1(android.view.View):0 -> onClick
+    8:8:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
+    9:9:boolean com.amrakshay.movieserve.phone.ServerService.isRunning():0:0 -> onClick
+    9:9:void com.amrakshay.movieserve.phone.MainActivity.saveUrl():0 -> onClick
+    9:9:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$1(android.view.View):0 -> onClick
+    9:9:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
+    10:10:void com.amrakshay.movieserve.phone.MainActivity.saveUrl():0:0 -> onClick
+    10:10:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$1(android.view.View):0 -> onClick
+    10:10:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
+    11:11:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0:0 -> onClick
+    12:12:void com.amrakshay.movieserve.phone.MainActivity.pickFolder():0:0 -> onClick
+    12:12:void com.amrakshay.movieserve.phone.MainActivity.lambda$onCreate$0(android.view.View):0 -> onClick
+    12:12:void c.MainActivity$$ExternalSyntheticLambda1.onClick(android.view.View):0 -> onClick
+com.amrakshay.movieserve.phone.MainActivity$$ExternalSyntheticLambda4 -> c.h:
+# {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
+# {"id":"com.android.tools.r8.synthesized"}
+    int c.MainActivity$$ExternalSyntheticLambda4.$r8$classId -> a
+      # {"id":"com.android.tools.r8.synthesized"}
+    com.amrakshay.movieserve.phone.MainActivity com.amrakshay.movieserve.phone.MainActivity$$InternalSyntheticLambda$1$8caca823b87f904fb8e6895fe0f535159695f57d1542dcefb479ccf493c122ff$0.f$0 -> b
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Ljava/lang/Object;"}
+      # {"id":"com.android.tools.r8.synthesized"}
+    1:1:void c.MainActivity$$ExternalSyntheticLambda4.<init>(java.lang.Object,int):0:0 -> <init>
+      # {"id":"com.android.tools.r8.synthesized"}
+    1:1:void com.amrakshay.movieserve.phone.HttpServer.acceptLoop():0:0 -> run
+    1:1:void c.MainActivity$$ExternalSyntheticLambda4.run():0 -> run
+      # {"id":"com.android.tools.r8.synthesized"}
+    2:2:void c.MainActivity$$ExternalSyntheticLambda4.run():0:0 -> run
+    3:3:void com.amrakshay.movieserve.phone.MainActivity.lambda$render$4():0:0 -> run
+    3:3:void c.MainActivity$$ExternalSyntheticLambda4.run():0 -> run
+com.amrakshay.movieserve.phone.MainActivity$1 -> c.i:
+# {"id":"sourceFile","fileName":"MainActivity.java"}
+    com.amrakshay.movieserve.phone.MainActivity this$0 -> a
+    1:6:void <init>(com.amrakshay.movieserve.phone.MainActivity):0:0 -> <init>
+    1:24:void onReceive(android.content.Context,android.content.Intent):0:0 -> onReceive
+com.amrakshay.movieserve.phone.Range -> c.k:
+# {"id":"sourceFile","fileName":"Range.java"}
+    long start -> a
+    long end -> b
+    java.util.regex.Pattern PATTERN -> c
+    1:1:void <clinit>():0:0 -> <clinit>
+    1:8:void <init>(long,long):0:0 -> <init>
+    1:1:long parseLong(java.lang.String):0:0 -> a
+    1:1:com.amrakshay.movieserve.phone.Range$Result parse(java.lang.String,long):0 -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Ljava/lang/String;J)Lc/j;"}
+    2:2:com.amrakshay.movieserve.phone.Range$Result parse(java.lang.String,long):0:0 -> a
+    3:3:com.amrakshay.movieserve.phone.Range$Result com.amrakshay.movieserve.phone.Range$Result.of(long,long):0:0 -> a
+    3:3:com.amrakshay.movieserve.phone.Range$Result parse(java.lang.String,long):0 -> a
+    4:4:long parseLong(java.lang.String):0:0 -> a
+    4:4:com.amrakshay.movieserve.phone.Range$Result parse(java.lang.String,long):0 -> a
+    5:5:com.amrakshay.movieserve.phone.Range$Result parse(java.lang.String,long):0:0 -> a
+    6:6:long parseLong(java.lang.String):0:0 -> a
+    6:6:com.amrakshay.movieserve.phone.Range$Result parse(java.lang.String,long):0 -> a
+    7:7:com.amrakshay.movieserve.phone.Range$Result parse(java.lang.String,long):0:0 -> a
+    8:8:com.amrakshay.movieserve.phone.Range$Result com.amrakshay.movieserve.phone.Range$Result.of(long,long):0:0 -> a
+    8:8:com.amrakshay.movieserve.phone.Range$Result parse(java.lang.String,long):0 -> a
+com.amrakshay.movieserve.phone.Range$Result -> c.j:
+# {"id":"sourceFile","fileName":"Range.java"}
+    com.amrakshay.movieserve.phone.Range range -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lc/k;"}
+    boolean unsatisfiable -> b
+    com.amrakshay.movieserve.phone.Range$Result WHOLE -> c
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lc/j;"}
+    com.amrakshay.movieserve.phone.Range$Result UNSATISFIABLE -> d
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lc/j;"}
+    1:1:void <clinit>():0:0 -> <clinit>
+    1:8:void <init>(com.amrakshay.movieserve.phone.Range,boolean):0:0 -> <init>
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Lc/k;Z)V"}
+com.amrakshay.movieserve.phone.ServerService -> com.amrakshay.movieserve.phone.ServerService:
+# {"id":"sourceFile","fileName":"ServerService.java"}
+    com.amrakshay.movieserve.phone.HttpServer server -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lc/b;"}
+    android.os.PowerManager$WakeLock wakeLock -> b
+    boolean running -> c
+    1:1:void announce(java.lang.String):0:0 -> a
+    1:1:android.app.Notification buildNotification(java.lang.String):0:0 -> b
+    1:1:void com.amrakshay.movieserve.phone.HttpServer.stop():0:0 -> c
+    1:1:void shutdown():0 -> c
+      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
+    2:2:void com.amrakshay.movieserve.phone.HttpServer.stop():0:0 -> c
+    2:2:void shutdown():0 -> c
+    3:3:void shutdown():0:0 -> c
+    4:4:void releaseWakeLock():0:0 -> c
+    4:4:void shutdown():0 -> c
+    5:5:void shutdown():0:0 -> c
+    1:1:void start(android.content.Context):0:0 -> d
+    1:1:com.amrakshay.movieserve.phone.Library currentLibrary():0:0 -> onStartCommand
+    1:1:int onStartCommand(android.content.Intent,int,int):0 -> onStartCommand
+    2:2:void com.amrakshay.movieserve.phone.HttpServer.setLibrary(com.amrakshay.movieserve.phone.Library):0:0 -> onStartCommand
+    2:2:int onStartCommand(android.content.Intent,int,int):0 -> onStartCommand
+      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
+    3:3:int onStartCommand(android.content.Intent,int,int):0:0 -> onStartCommand
+    4:4:com.amrakshay.movieserve.phone.Library currentLibrary():0:0 -> onStartCommand
+    4:4:int onStartCommand(android.content.Intent,int,int):0 -> onStartCommand
+    5:5:int onStartCommand(android.content.Intent,int,int):0:0 -> onStartCommand
+    6:6:void com.amrakshay.movieserve.phone.HttpServer.start():0:0 -> onStartCommand
+    6:6:int onStartCommand(android.content.Intent,int,int):0 -> onStartCommand
+      # {"id":"com.android.tools.r8.rewriteFrame","conditions":["throws(Ljava/lang/NullPointerException;)"],"actions":["removeInnerFrames(1)"]}
+    7:7:void com.amrakshay.movieserve.phone.HttpServer.start():0:0 -> onStartCommand
+    7:7:int onStartCommand(android.content.Intent,int,int):0 -> onStartCommand
+    8:8:void acquireWakeLock():0:0 -> onStartCommand
+    8:8:int onStartCommand(android.content.Intent,int,int):0 -> onStartCommand
+    9:9:int onStartCommand(android.content.Intent,int,int):0:0 -> onStartCommand
+    10:10:void updateNotification(java.lang.String):0:0 -> onStartCommand
+    10:10:int onStartCommand(android.content.Intent,int,int):0 -> onStartCommand
+    11:11:int onStartCommand(android.content.Intent,int,int):0:0 -> onStartCommand

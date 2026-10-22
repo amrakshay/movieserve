@@ -1,0 +1,198 @@
+androidx.annotation.AnimRes
+androidx.annotation.AnimatorRes
+androidx.annotation.AnyRes
+androidx.annotation.AnyThread
+androidx.annotation.ArrayRes
+androidx.annotation.AttrRes
+androidx.annotation.BinderThread
+androidx.annotation.BoolRes
+androidx.annotation.CallSuper
+androidx.annotation.CheckResult
+androidx.annotation.ColorInt
+androidx.annotation.ColorLong
+androidx.annotation.ColorRes
+androidx.annotation.DimenRes
+androidx.annotation.Dimension
+androidx.annotation.DrawableRes
+androidx.annotation.FloatRange
+androidx.annotation.FontRes
+androidx.annotation.FractionRes
+androidx.annotation.GuardedBy
+androidx.annotation.HalfFloat
+androidx.annotation.IdRes
+androidx.annotation.IntDef
+androidx.annotation.IntRange
+androidx.annotation.IntegerRes
+androidx.annotation.InterpolatorRes
+androidx.annotation.LayoutRes
+androidx.annotation.LongDef
+androidx.annotation.MainThread
+androidx.annotation.MenuRes
+androidx.annotation.NavigationRes
+androidx.annotation.NonNull
+androidx.annotation.Nullable
+androidx.annotation.PluralsRes
+androidx.annotation.Px
+androidx.annotation.RawRes
+androidx.annotation.RequiresApi
+androidx.annotation.RequiresFeature
+androidx.annotation.RequiresPermission$Read
+androidx.annotation.RequiresPermission$Write
+androidx.annotation.RequiresPermission
+androidx.annotation.RestrictTo$Scope
+androidx.annotation.RestrictTo
+androidx.annotation.Size
+androidx.annotation.StringDef
+androidx.annotation.StringRes
+androidx.annotation.StyleRes
+androidx.annotation.StyleableRes
+androidx.annotation.TransitionRes
+androidx.annotation.UiThread
+androidx.annotation.VisibleForTesting
+androidx.annotation.WorkerThread
+androidx.annotation.XmlRes
+androidx.documentfile.R
+androidx.documentfile.provider.DocumentFile:
+    static final java.lang.String TAG
+    public abstract boolean canRead()
+    public abstract boolean canWrite()
+    public abstract androidx.documentfile.provider.DocumentFile createDirectory(java.lang.String)
+    public abstract androidx.documentfile.provider.DocumentFile createFile(java.lang.String,java.lang.String)
+    public abstract boolean delete()
+    public abstract boolean exists()
+    public androidx.documentfile.provider.DocumentFile findFile(java.lang.String)
+    public static androidx.documentfile.provider.DocumentFile fromFile(java.io.File)
+    public static androidx.documentfile.provider.DocumentFile fromSingleUri(android.content.Context,android.net.Uri)
+    public androidx.documentfile.provider.DocumentFile getParentFile()
+    public abstract java.lang.String getType()
+    public static boolean isDocumentUri(android.content.Context,android.net.Uri)
+    public abstract boolean isFile()
+    public abstract boolean isVirtual()
+    public abstract long lastModified()
+    public abstract boolean renameTo(java.lang.String)
+androidx.documentfile.provider.DocumentsContractApi19:
+    private static final int FLAG_VIRTUAL_DOCUMENT
+    private static final java.lang.String TAG
+    private void <init>()
+    public static boolean canRead(android.content.Context,android.net.Uri)
+    public static boolean canWrite(android.content.Context,android.net.Uri)
+    public static boolean exists(android.content.Context,android.net.Uri)
+    public static long getFlags(android.content.Context,android.net.Uri)
+    public static java.lang.String getType(android.content.Context,android.net.Uri)
+    public static boolean isFile(android.content.Context,android.net.Uri)
+    public static boolean isVirtual(android.content.Context,android.net.Uri)
+    public static long lastModified(android.content.Context,android.net.Uri)
+    private static int queryForInt(android.content.Context,android.net.Uri,java.lang.String,int)
+androidx.documentfile.provider.RawDocumentFile
+androidx.documentfile.provider.SingleDocumentFile
+androidx.documentfile.provider.TreeDocumentFile:
+    public boolean canRead()
+    public boolean canWrite()
+    public androidx.documentfile.provider.DocumentFile createDirectory(java.lang.String)
+    private static android.net.Uri createFile(android.content.Context,android.net.Uri,java.lang.String,java.lang.String)
+    public androidx.documentfile.provider.DocumentFile createFile(java.lang.String,java.lang.String)
+    public boolean delete()
+    public boolean exists()
+    public java.lang.String getType()
+    public boolean isFile()
+    public boolean isVirtual()
+    public long lastModified()
+    public boolean renameTo(java.lang.String)
+com.amrakshay.movieserve.phone.HttpServer:
+    private static final int CHUNK
+    private static final java.lang.String CRLF
+    private static final java.lang.String TAG
+    boolean isRunning()
+com.amrakshay.movieserve.phone.Library:
+    static final java.lang.String VERSION
+com.amrakshay.movieserve.phone.MainActivity:
+    private static final int REQUEST_NOTIFICATIONS
+    private static final int REQUEST_TREE
+com.amrakshay.movieserve.phone.Net:
+    private void <init>()
+com.amrakshay.movieserve.phone.Prefs:
+    private static final java.lang.String FILE
+    private static final java.lang.String KEY_TREE
+    private static final java.lang.String KEY_URL
+    static final int PORT
+    private void <init>()
+com.amrakshay.movieserve.phone.R$color
+com.amrakshay.movieserve.phone.R$id:
+    private void <init>()
+com.amrakshay.movieserve.phone.R$layout:
+    private void <init>()
+com.amrakshay.movieserve.phone.R$mipmap
+com.amrakshay.movieserve.phone.R$string:
+    public static int app_name
+    public static int enter_on_tv
+    public static int folder_heading
+    public static int hint_footer
+    public static int link_heading
+    public static int pick_folder
+    public static int save
+    public static int url_hint
+    private void <init>()
+com.amrakshay.movieserve.phone.R$style
+com.amrakshay.movieserve.phone.R$xml
+com.amrakshay.movieserve.phone.R
+com.amrakshay.movieserve.phone.Range:
+    long length()
+com.amrakshay.movieserve.phone.ServerService:
+    static final java.lang.String ACTION_START
+    static final java.lang.String ACTION_STATE_CHANGED
+    static final java.lang.String ACTION_STOP
+    private static final java.lang.String CHANNEL_ID
+    static final java.lang.String EXTRA_ERROR
+    private static final int NOTIFICATION_ID
+    private static final java.lang.String TAG
+androidx.documentfile.provider.DocumentFile
+androidx.documentfile.provider.TreeDocumentFile:
+    public final androidx.documentfile.provider.TreeDocumentFile mParent
+    public static void closeQuietly(android.database.Cursor)
+    public static androidx.documentfile.provider.TreeDocumentFile fromTreeUri(android.content.Context,android.net.Uri)
+    public final java.lang.String getName()
+    public static android.net.Uri getUri()
+    public final boolean isDirectory()
+    public static long length()
+    public static androidx.documentfile.provider.TreeDocumentFile[] listFiles()
+com.amrakshay.movieserve.phone.HttpServer:
+    public static void acceptLoop()
+    public static android.net.Uri findInLibrary()
+    public static void handle()
+    public static void lambda$acceptLoop$0()
+    public static void setLibrary()
+    public static void start()
+    public static void stop()
+com.amrakshay.movieserve.phone.Library$1:
+    public final synthetic com.amrakshay.movieserve.phone.Library this$0
+    public static int compare()
+com.amrakshay.movieserve.phone.Library:
+    public static java.lang.String rootName()
+com.amrakshay.movieserve.phone.MainActivity:
+    public static void askForNotificationPermission()
+    public static void lambda$onCreate$0()
+    public static void lambda$onCreate$1()
+    public static void lambda$onCreate$2()
+    public static synthetic void lambda$render$3()
+    public static synthetic void lambda$render$4()
+    public static void pickFolder()
+    public static java.lang.String readableFolder()
+    public static void saveUrl()
+    public static void toggleServer()
+com.amrakshay.movieserve.phone.Prefs:
+    public static android.content.SharedPreferences of(android.content.Context)
+com.amrakshay.movieserve.phone.R$id
+com.amrakshay.movieserve.phone.R$layout
+com.amrakshay.movieserve.phone.R$string
+com.amrakshay.movieserve.phone.Range$Result:
+    public final boolean isPartial()
+    public static com.amrakshay.movieserve.phone.Range$Result of(long,long)
+com.amrakshay.movieserve.phone.Range-IA
+com.amrakshay.movieserve.phone.Range:
+    public static long parseLong(java.lang.String)
+com.amrakshay.movieserve.phone.ServerService:
+    static void <clinit>()
+    public static void acquireWakeLock()
+    public final com.amrakshay.movieserve.phone.Library currentLibrary()
+    public static void releaseWakeLock()
+    public static void updateNotification()

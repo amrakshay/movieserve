@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.amrakshay.movieserve.phone.RangeTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-10-22T14:17:06" hostname="Akshays-MacBook-Pro.local" time="0.002">
+  <properties/>
+  <testcase name="backwardsRangeIsUnsatisfiable" classname="com.amrakshay.movieserve.phone.RangeTest" time="0.001"/>
+  <testcase name="zeroLengthSuffixIsUnsatisfiable" classname="com.amrakshay.movieserve.phone.RangeTest" time="0.0"/>
+  <testcase name="whitespaceIsTolerated" classname="com.amrakshay.movieserve.phone.RangeTest" time="0.0"/>
+  <testcase name="suffixRangeReturnsTheTail" classname="com.amrakshay.movieserve.phone.RangeTest" time="0.0"/>
+  <testcase name="openEndedRange" classname="com.amrakshay.movieserve.phone.RangeTest" time="0.0"/>
+  <testcase name="closedRange" classname="com.amrakshay.movieserve.phone.RangeTest" time="0.0"/>
+  <testcase name="startBeyondTheFileIsUnsatisfiable" classname="com.amrakshay.movieserve.phone.RangeTest" time="0.0"/>
+  <testcase name="suffixLongerThanTheFileIsClamped" classname="com.amrakshay.movieserve.phone.RangeTest" time="0.0"/>
+  <testcase name="singleByte" classname="com.amrakshay.movieserve.phone.RangeTest" time="0.001"/>
+  <testcase name="malformedHeaderFallsBackToTheWholeFile" classname="com.amrakshay.movieserve.phone.RangeTest" time="0.0"/>
+  <testcase name="endBeyondTheFileIsClamped" classname="com.amrakshay.movieserve.phone.RangeTest" time="0.0"/>
+  <testcase name="noHeaderMeansWholeFile" classname="com.amrakshay.movieserve.phone.RangeTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

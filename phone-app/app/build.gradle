@@ -1,0 +1,53 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.amrakshay.movieserve.phone'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.amrakshay.movieserve.phone'
+        // Android 7.0. The Storage Access Framework tree picker this depends on arrived in 21,
+        // but 24 is a sensible floor for a phone app written today.
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName '1.0.0'
+    }
+
+    signingConfigs {
+        // Same reasoning as the TV app: fall back to the SDK's debug keystore so a build is
+        // installable with no setup. Override through the environment to sign for distribution.
+        release {
+            def store = System.getenv('MOVIESERVE_KEYSTORE')
+                    ?: "${System.properties['user.home']}/.android/debug.keystore"
+            storeFile file(store)
+            storePassword System.getenv('MOVIESERVE_KEYSTORE_PASSWORD') ?: 'android'
+            keyAlias System.getenv('MOVIESERVE_KEY_ALIAS') ?: 'androiddebugkey'
+            keyPassword System.getenv('MOVIESERVE_KEY_PASSWORD') ?: 'android'
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    // documentfile is the only way to walk a Storage Access Framework tree without writing the
+    // DocumentsContract cursor handling by hand.
+    implementation 'androidx.documentfile:documentfile:1.0.1'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.json:json:20240303'
+}

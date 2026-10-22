@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  This app is an HTTP server on the local network, so cleartext has to be allowed. It cannot be
+  narrowed to a domain list, because the clients are whatever devices are on the house network.
+  HTTPS would mean a certificate for a private address, which is a worse trade for traffic that
+  never leaves the building. SECURITY.md records the same reasoning for the Python server.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>

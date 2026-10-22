@@ -1,0 +1,8 @@
+com.amrakshay.movieserve.phone.app-pngs-0 /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/generated/res/pngs/release
+com.amrakshay.movieserve.phone.app-resValues-1 /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/generated/res/resValues/release
+com.amrakshay.movieserve.phone.app-packageReleaseResources-2 /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/incremental/release/packageReleaseResources/merged.dir
+com.amrakshay.movieserve.phone.app-packageReleaseResources-3 /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/incremental/release/packageReleaseResources/stripped.dir
+com.amrakshay.movieserve.phone.app-merged-not-compiled-resources-4 /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/merged-not-compiled-resources/release
+com.amrakshay.movieserve.phone.app-release-5 /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/build/intermediates/merged_res/release/mergeReleaseResources
+com.amrakshay.movieserve.phone.app-main-6 /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/main/res
+com.amrakshay.movieserve.phone.app-release-7 /Users/akshay/Workarea/github/amrakshay/movieserve/phone-app/app/src/release/res
