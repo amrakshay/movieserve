@@ -2,9 +2,13 @@
 
 ## The threat model, stated plainly
 
-**`movieserve` has no authentication.** Anyone who can reach the port can list every video in the
-folder you shared and download any of them. This is a deliberate design choice for a tool that runs
-for an hour on a home network, not an oversight.
+**`movieserve` has no authentication**, in either the Python server or the phone app. Anyone who
+can reach the port can list every video in the folder you shared and download any of them. This is
+a deliberate design choice for a tool that runs for an hour on a home network, not an oversight.
+
+Traffic is plain HTTP, so it is also unencrypted on your local network. Both apps ship a network
+security config permitting cleartext, because the alternative would be a certificate for a private
+IP address, which is a worse trade for traffic that never leaves the building.
 
 What that means in practice:
 
@@ -21,6 +25,10 @@ What that means in practice:
   and symlinks pointing outside are refused. This is covered by tests.
 - **Serving arbitrary files.** Only known video extensions are listed and streamed; a request for
   anything else is a 404, even inside the shared folder.
+- **Reaching outside the shared folder on a phone.** The phone app serves only content URIs that
+  appear in the current listing, so a guessed or stale URI cannot be used to read something else the
+  app happens to hold permission for. Android's Storage Access Framework limits it to the chosen
+  folder in the first place.
 
 ## Reporting a vulnerability
 

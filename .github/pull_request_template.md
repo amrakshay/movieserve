@@ -16,11 +16,13 @@ than usual. For example: "Built and installed on a Mi TV 4A Pro (Android 9), pla
 
 - [ ] `python3 -m unittest discover -s server/tests` passes
 - [ ] `cd tv-app && ./gradlew test` passes
-- [ ] Tried on a real TV, if the change could affect playback
+- [ ] `cd phone-app && ./gradlew test` passes
+- [ ] Tried on a real device, if the change could affect playback
 
 ## Checklist
 
-- [ ] The server still has no third-party dependencies
+- [ ] The Python server still has no third-party dependencies
 - [ ] New behaviour around ranges, path resolution or JSON parsing has a test
+- [ ] If range handling changed, it changed in **both** the Python server and the phone app
 - [ ] Docs updated if behaviour changed
 - [ ] The banner was regenerated rather than edited, if it changed

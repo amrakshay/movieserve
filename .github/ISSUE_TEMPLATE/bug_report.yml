@@ -15,8 +15,9 @@ body:
       label: Which part?
       options:
         - Server (Python, on the laptop)
+        - Phone app (Android, serving)
         - TV app
-        - Both, or not sure
+        - More than one, or not sure
     validations:
       required: true
 
@@ -46,6 +47,24 @@ body:
     attributes:
       label: TV model and Android version
       placeholder: "Xiaomi MiTV-AXSO0, Android 9"
+
+  - type: input
+    id: phone
+    attributes:
+      label: Phone model and Android version (if the phone app is serving)
+      placeholder: "OnePlus 7, OxygenOS 10.3.8 (Android 10)"
+
+  - type: textarea
+    id: battery
+    attributes:
+      label: Battery optimisation (phone app only)
+      description: |
+        Whether the app is exempt from Doze. Without the exemption a request was measured at up
+        to eight seconds under deep Doze, which looks exactly like a stuttering bug.
+        ```
+        adb shell dumpsys deviceidle whitelist | grep movieserve
+        ```
+      render: shell
 
   - type: textarea
     id: network

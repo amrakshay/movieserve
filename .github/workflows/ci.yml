@@ -53,6 +53,33 @@ jobs:
             --path-as-is http://127.0.0.1:18080/stream/../../etc/passwd)
           test "$code" = "404" || { echo "expected 404, got $code"; exit 1; }
 
+  phone-app:
+    name: Phone app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Unit tests
+        working-directory: phone-app
+        run: ./gradlew test --console=plain
+
+      - name: Build
+        working-directory: phone-app
+        run: ./gradlew assembleRelease --console=plain
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: movieserve-phone-apk
+          path: phone-app/app/build/outputs/apk/release/app-release.apk
+          if-no-files-found: error
+
   tv-app:
     name: TV app
     runs-on: ubuntu-latest

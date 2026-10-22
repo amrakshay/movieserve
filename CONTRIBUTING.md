@@ -7,8 +7,9 @@ thing you can do before writing code is open an issue and check the change fits.
 
 `movieserve` streams files from a folder to VLC on a TV. It stays small on purpose.
 
-**In scope:** correctness and reliability of the server, better handling of awkward filenames and
-network conditions, TV-app usability with a remote, documentation, tests.
+**In scope:** correctness and reliability of the servers, better handling of awkward filenames and
+network conditions, TV-app usability with a remote, phone-app behaviour under Android's power
+management, documentation, tests.
 
 **Out of scope** unless something changes our minds: transcoding, user accounts, a web UI, posters
 and metadata scraping, running as a system service, anything that adds a runtime dependency to the
@@ -23,13 +24,25 @@ python3 server/movieserve.py ~/Movies
 python3 -m unittest discover -s server/tests -v
 ```
 
-**TV app** — JDK 17 and the Android SDK (`platforms;android-34`, `build-tools;34.x`).
+**TV app and phone app** — JDK 17 and the Android SDK (`platforms;android-34`,
+`build-tools;34.x`). Two independent Gradle projects:
 
 ```bash
-cd tv-app
+cd tv-app     # or phone-app
 ./gradlew test            # JVM unit tests, no device needed
 ./gradlew assembleRelease
 ```
+
+Both are signed with the SDK's debug keystore so a build installs with no setup. Override with
+`MOVIESERVE_KEYSTORE` and friends to sign for distribution.
+
+### The range code exists three times, on purpose
+
+Range handling lives in the Python server, the phone app and their tests, with the **same cases on
+both sides**. They must behave identically: a TV that seeks correctly against a laptop and badly
+against a phone is worse than one that fails outright, because nobody knows which half to blame.
+
+If you change one, change the other, and the test that fails is the point.
 
 **The banner** is generated, not hand-drawn. If you change it, regenerate rather than editing the
 PNG:
@@ -69,3 +82,14 @@ Both suites run in CI on every pull request and must pass.
 Use the issue templates. For playback problems, the single most useful detail is what the TV's
 network actually is — `adb shell getprop ro.wifi.channels` and the link speed. Most "it stutters"
 reports turn out to be a 2.4 GHz TV on a crowded channel rather than a bug.
+
+If the server is a phone, also say whether it is exempt from battery optimisation
+(`adb shell dumpsys deviceidle whitelist | grep movieserve`). Without that exemption a request
+under deep Doze was measured at up to eight seconds, which looks exactly like a stuttering bug and
+is not one.
+
+### Test on real devices
+
+Every interesting bug in this project came from hardware, not an emulator: Android silently
+blocking plain HTTP, a list that loaded but could not be focused, a server printing a traceback on
+every seek. If a change could affect playback, say what you ran it on.

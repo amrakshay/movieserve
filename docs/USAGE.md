@@ -111,18 +111,45 @@ address to type into the TV is shown on screen.
 The folder is picked through Android's Storage Access Framework, so the app can read that folder
 and nothing else. The permission is kept across restarts, so you only pick it once.
 
-### Things to know
+### Allow background use
+
+**Tap "Allow background use" in the app and grant it.** The button is shown only while the
+exemption is missing, and it is the single most useful thing you can do for smooth playback.
+
+This was measured, not guessed. On a OnePlus 7 with Doze forced on deliberately
+(`adb shell dumpsys deviceidle force-idle`), requesting a chunk of a film every five seconds:
+
+| | Without the exemption | With it |
+|---|---|---|
+| Median response | 1,506 ms | ~1,100 ms |
+| 90th percentile | **6,233 ms** | ~1,600 ms |
+| Worst | **8,141 ms** | ~1,700 ms |
+| Over 3 seconds | 7 of 26 | **none** |
+
+Nothing ever *failed* — 86 requests across foreground, background, locked, light Doze and deep
+Doze, with zero errors. The foreground service and wake lock hold up. What suffers without the
+exemption is speed, and an eight-second stall is a frozen picture.
+
+One caveat on those numbers: the test fired one small request every five seconds, which lets the
+radio sleep in between. A film holds a continuous connection and should keep it awake, so this is
+closer to a worst case than to normal playback.
+
+### Other things to know
 
 - A **foreground service** keeps it serving when the screen goes off, with an ongoing notification
   that also stops it. A **wake lock** stops the CPU dozing mid-film; the service alone is not
   enough for that.
-- **On OnePlus, Xiaomi, Samsung and others, battery optimisation can still kill it.** If playback
-  dies partway through a film, exempt the app: Settings, Battery, Battery optimisation, movieserve,
-  Don't optimise.
-- Phones sleep their Wi-Fi radio aggressively when idle. Latency to a phone sitting untouched can
-  be hundreds of milliseconds; it recovers once the server holds its wake lock.
+- **OnePlus, Xiaomi and Samsung add their own killing on top of Android's.** If playback dies
+  partway through a film even with the exemption granted, look for a vendor setting too: on
+  OxygenOS, Settings, Battery, Battery optimisation, and any "advanced" or "sleep standby"
+  optimisation.
+- Phones sleep their Wi-Fi radio hard when idle. A phone left untouched can show hundreds of
+  milliseconds of latency before the server's wake lock takes effect.
 - The phone is doing the serving, so expect battery drain and some warmth over a long film. Charge
   it if you can.
+- The folder is read through the Storage Access Framework, so the app can read **that folder and
+  nothing else**. Android has no way to grant that without the picker, which is why choosing the
+  folder cannot be automated.
 
 ## The API
 
@@ -194,3 +221,18 @@ router's 2.4 GHz band to channel 1 or 11 — the channels that do not overlap th
 
 **Filenames with accents or symbols**
 Handled: paths are percent-encoded in the API and decoded by the server.
+
+**The TV app shows the list, but pressing OK opens the settings screen**
+Fixed in the TV app: the list is focused once its rows exist. If you see it on an older build,
+press Down once to move focus into the list, then OK.
+
+**"Cleartext HTTP traffic to ... not permitted"**
+Fixed. Android blocks plain HTTP by default for apps targeting SDK 28 and above; both apps ship a
+network security config that permits it, because the whole point is talking to a server on your own
+network at an address you type in.
+
+**Playback from a phone stutters where the laptop was fine**
+Two likely reasons. The phone may not be exempt from battery optimisation — see above. Or the
+phone's Wi-Fi is simply weaker than the laptop's; check what each is connected to. A phone on
+2.4 GHz serving a TV also on 2.4 GHz is the worst case, because both ends share the same congested
+band.
