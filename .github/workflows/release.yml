@@ -39,6 +39,10 @@ jobs:
           java-version: '17'
 
       - uses: android-actions/setup-android@v3
+        with:
+          # The action's default package list includes "tools", which Google has retired, and
+          # sdkmanager fails the job rather than skipping it. Name what the build actually needs.
+          packages: 'platform-tools platforms;android-34 build-tools;34.0.0'
 
       - name: Build the TV app
         working-directory: tv-app
