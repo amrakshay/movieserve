@@ -85,7 +85,18 @@ jobs:
         run: |
           # A silently unsigned or wrongly signed APK would only be discovered by a user whose
           # upgrade was refused, so confirm the signer here instead.
-          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -name apksigner | sort | tail -1)
+          #
+          # apksigner runs once per APK and its whole output is kept, so a failure shows what the
+          # tool actually said. An earlier version piped straight into grep and ran the tool
+          # twice, which under `set -e` failed with nothing printed at all.
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -name apksigner -type f | sort | tail -1)
+          echo "apksigner: ${APKSIGNER:-NOT FOUND}"
+          if [ -z "$APKSIGNER" ]; then
+            echo "::error::apksigner not found under $ANDROID_HOME/build-tools"
+            ls -la "$ANDROID_HOME/build-tools" || true
+            exit 1
+          fi
+
           for apk in tv-app/app/build/outputs/apk/release/app-release.apk \
                      phone-app/app/build/outputs/apk/release/app-release.apk; do
             echo "--- $apk"
@@ -96,9 +107,17 @@ jobs:
               ls -la "$(dirname "$apk")" || true
               exit 1
             fi
-            "$APKSIGNER" verify --print-certs "$apk" | grep -E "Signer #1 certificate (DN|SHA-256)"
-            "$APKSIGNER" verify --print-certs "$apk" | grep -q "CN=movieserve" || {
-              echo "::error::$apk is not signed with the movieserve release key"; exit 1; }
+            if ! out=$("$APKSIGNER" verify --print-certs "$apk" 2>&1); then
+              echo "$out"
+              echo "::error::apksigner could not verify $apk"
+              exit 1
+            fi
+            echo "$out" | grep -E "Signer #1 certificate (DN|SHA-256)" || true
+            if ! echo "$out" | grep -q "CN=movieserve"; then
+              echo "$out"
+              echo "::error::$apk is not signed with the movieserve release key"
+              exit 1
+            fi
           done
 
       - name: Name the APKs after the release
