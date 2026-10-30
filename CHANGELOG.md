@@ -12,6 +12,27 @@ disagreeing numbers.
 
 Nothing yet.
 
+## [1.1.0] — 2026-10-30
+
+### Added
+
+- **A choice of video player.** The TV app asks Android which apps can open a video URL and offers
+  them, instead of handing every film to VLC. One player is used without a prompt; several bring up
+  a "Play with" list that is navigable with a remote, and the choice is remembered.
+- **Default player** and **Ask every time** under the app's settings, so the choice can be changed
+  later or made before each film.
+
+### Changed
+
+- **VLC is no longer required.** Any player that can open an HTTP video URL works — VLC, MX Player,
+  or the set's own. The error shown when none is installed says so.
+
+### Fixed
+
+- Android's own placeholder (`com.google.android.tv.frameworkpackagestubs`) is filtered out of the
+  player list. It claims to handle videos and then reports that nothing can, so offering it looked
+  like a choice and always failed.
+
 ## [1.0.0] — 2026-10-22
 
 First release. Three pieces that let you watch films from a laptop or phone on an Android TV,
@@ -48,5 +69,6 @@ and a server printing a traceback on every seek.
 
 There is no authentication, by design. See [SECURITY.md](SECURITY.md).
 
-[Unreleased]: https://github.com/amrakshay/movieserve/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/amrakshay/movieserve/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/amrakshay/movieserve/releases/tag/v1.1.0
 [1.0.0]: https://github.com/amrakshay/movieserve/releases/tag/v1.0.0

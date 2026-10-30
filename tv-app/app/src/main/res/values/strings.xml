@@ -9,6 +9,14 @@
     <string name="no_server">No server address set yet.</string>
     <string name="empty_library">No videos found on the server.</string>
     <string name="cannot_reach">Could not reach %1$s\n\n%2$s\n\nCheck the laptop is awake and movieserve is running.</string>
-    <string name="no_vlc">VLC is not installed on this TV. Install VLC, then try again.</string>
+    <string name="no_player">No video player is installed on this TV. Install one (VLC and MX Player both work), then try again.</string>
+    <string name="player_gone">%1$s is no longer available. Pick another player and try again.</string>
+    <string name="play_with">Play with</string>
+    <string name="default_player">Default player</string>
+    <string name="default_player_none">Not chosen yet</string>
+    <string name="always_ask">Ask every time</string>
+    <string name="always_ask_on">On — the player is chosen before each film</string>
+    <string name="always_ask_off">Off — films open in the default player</string>
+    <string name="only_one_player">%1$s is the only player installed, so there is nothing to choose.</string>
     <string name="address_hint">Enter the address movieserve printed when it started, for example http://192.168.0.116:18080</string>
 </resources>

@@ -47,4 +47,43 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/save" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="32dp"
+        android:background="#1FFFFFFF" />
+
+    <Button
+        android:id="@+id/choosePlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/default_player" />
+
+    <TextView
+        android:id="@+id/currentPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:textColor="@color/text_dim"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/toggleAlwaysAsk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/always_ask" />
+
+    <TextView
+        android:id="@+id/alwaysAskState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:textColor="@color/text_dim"
+        android:textSize="13sp" />
 </LinearLayout>
