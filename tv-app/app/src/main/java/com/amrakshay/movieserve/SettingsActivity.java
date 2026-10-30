@@ -1,12 +1,16 @@
 package com.amrakshay.movieserve;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
 
 /**
  * Where the laptop's address is typed in.
@@ -40,6 +44,73 @@ public class SettingsActivity extends Activity {
         });
 
         findViewById(R.id.save).setOnClickListener(v -> save());
+        findViewById(R.id.choosePlayer).setOnClickListener(v -> choosePlayer());
+        findViewById(R.id.toggleAlwaysAsk).setOnClickListener(v -> {
+            Prefs.setAlwaysAsk(this, !Prefs.alwaysAsk(this));
+            showPlayerState();
+        });
+        showPlayerState();
+    }
+
+    /**
+     * Which player films open in, and whether to ask each time.
+     *
+     * <p>Shown as plain text under each button rather than a checkbox: a TV remote has no obvious
+     * way to toggle a checkbox, and the current state has to be readable from across a room.
+     */
+    private void showPlayerState() {
+        String chosen = Prefs.player(this);
+        String label = getString(R.string.default_player_none);
+        for (Players.Player player : installedPlayers()) {
+            if (player.packageName.equals(chosen)) {
+                label = player.label;
+                break;
+            }
+        }
+        ((TextView) findViewById(R.id.currentPlayer)).setText(label);
+        ((TextView) findViewById(R.id.alwaysAskState)).setText(
+                Prefs.alwaysAsk(this) ? R.string.always_ask_on : R.string.always_ask_off);
+    }
+
+    private void choosePlayer() {
+        List<Players.Player> players = installedPlayers();
+        if (players.isEmpty()) {
+            Toast.makeText(this, R.string.no_player, Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (players.size() == 1) {
+            // Still record it, so the one player is used without a prompt.
+            Prefs.setPlayer(this, players.get(0).packageName);
+            showPlayerState();
+            Toast.makeText(this, getString(R.string.only_one_player, players.get(0).label),
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+        CharSequence[] labels = new CharSequence[players.size()];
+        for (int i = 0; i < players.size(); i++) {
+            labels[i] = players.get(i).label;
+        }
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.default_player)
+                .setItems(labels, (dialog, which) -> {
+                    Prefs.setPlayer(this, players.get(which).packageName);
+                    showPlayerState();
+                })
+                .show();
+    }
+
+    /**
+     * The players on this TV.
+     *
+     * <p>Probed with a URL of the shape this app actually opens. The address does not have to
+     * resolve: only the scheme and the video type decide who claims the intent.
+     */
+    private List<Players.Player> installedPlayers() {
+        String sample = Prefs.server(this);
+        if (sample.isEmpty()) {
+            sample = "http://127.0.0.1:18080";
+        }
+        return Players.available(this, sample + "/stream/sample.mkv");
     }
 
     private void save() {

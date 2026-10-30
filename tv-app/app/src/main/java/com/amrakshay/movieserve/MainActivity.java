@@ -1,6 +1,7 @@
 package com.amrakshay.movieserve;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -21,14 +22,11 @@ import java.util.concurrent.Executors;
 /**
  * The library list.
  *
- * <p>The app does no playback of its own: picking a film hands its URL to VLC, which already knows
- * how to stream over HTTP and seek within it. That keeps this app small and means every format VLC
- * supports works here for free.
+ * <p>The app does no playback of its own: picking a film hands its URL to whichever player the
+ * viewer has, which already knows how to stream over HTTP and seek within it. That keeps this app
+ * small, and means every format that player supports works here for free.
  */
 public class MainActivity extends Activity implements MovieAdapter.OnMovieSelected {
-
-    /** VLC for Android. Set explicitly so a film never opens in something unexpected. */
-    private static final String VLC_PACKAGE = "org.videolan.vlc";
 
     private final ExecutorService io = Executors.newSingleThreadExecutor();
     private final Handler ui = new Handler(Looper.getMainLooper());
@@ -163,16 +161,65 @@ public class MainActivity extends Activity implements MovieAdapter.OnMovieSelect
     @Override
     public void onMovieSelected(Library.Item item) {
         String url = item.playbackUrl(Prefs.server(this));
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setPackage(VLC_PACKAGE);
-        intent.setDataAndType(Uri.parse(url), "video/*");
-        // VLC shows this instead of the URL while it buffers.
+        List<Players.Player> players = Players.available(this, url);
+
+        if (players.isEmpty()) {
+            showStatus(getString(R.string.no_player), getString(R.string.retry), this::load);
+            return;
+        }
+        // One player means there is nothing to choose, whatever the setting says.
+        if (players.size() == 1) {
+            play(item, url, players.get(0));
+            return;
+        }
+        if (!Prefs.alwaysAsk(this)) {
+            Players.Player saved = Players.saved(this, url);
+            if (saved != null) {
+                play(item, url, saved);
+                return;
+            }
+        }
+        askWhichPlayer(item, url, players);
+    }
+
+    /**
+     * Offer the installed players.
+     *
+     * <p>A plain dialog rather than a screen of its own: it is navigable with a remote, it keeps
+     * the list behind it visible, and Back returns to exactly where the viewer was.
+     */
+    private void askWhichPlayer(Library.Item item, String url, List<Players.Player> players) {
+        CharSequence[] labels = new CharSequence[players.size()];
+        for (int i = 0; i < players.size(); i++) {
+            labels[i] = players.get(i).label;
+        }
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.play_with)
+                .setItems(labels, (dialog, which) -> {
+                    Players.Player chosen = players.get(which);
+                    // Remembered even when "always ask" is on, so the setting can be turned off
+                    // later without having to choose again.
+                    Prefs.setPlayer(this, chosen.packageName);
+                    play(item, url, chosen);
+                })
+                .show();
+    }
+
+    private void play(Library.Item item, String url, Players.Player player) {
+        Intent intent = Players.viewIntent(url);
+        // Naming the activity, not just the package, so a player with several entry points opens
+        // the one that actually resolved for this intent.
+        intent.setClassName(player.packageName, player.activityName);
+        // Players that show a title while buffering use this instead of the URL.
         intent.putExtra("title", item.name);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try {
             startActivity(intent);
         } catch (ActivityNotFoundException e) {
-            showStatus(getString(R.string.no_vlc), getString(R.string.retry), this::load);
+            // Uninstalled between listing and launching, or the activity is not exported after all.
+            Prefs.setPlayer(this, "");
+            showStatus(getString(R.string.player_gone, player.label),
+                    getString(R.string.retry), this::load);
         }
     }
 }

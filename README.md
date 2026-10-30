@@ -24,13 +24,13 @@ the TV.
 |---|---|
 | [`server/`](server/) | A Python server you point at a folder. **Standard library only** — no `pip install`, no virtualenv |
 | [`phone-app/`](phone-app/) | The same server, from an **Android phone**, for when there is no laptop |
-| [`tv-app/`](tv-app/) | An **Android TV app** that lists what it finds and hands your pick to **VLC** |
+| [`tv-app/`](tv-app/) | An **Android TV app** that lists what it finds and hands your pick to **your video player** |
 
 You need the TV app plus *either* the Python server or the phone app. They speak the same two
 endpoints, so the TV cannot tell which is on the other end.
 
-The TV app plays nothing itself. VLC already streams over HTTP, seeks, and handles every format
-worth having, so it does the work and this stays small — the TV app is 145 KB, the phone app 31 KB.
+The TV app plays nothing itself. A video player already streams over HTTP, seeks, and handles
+every format worth having, so it does the work and this stays small — the TV app is 145 KB, the phone app 31 KB.
 
 ```
 laptop or phone                          TV
@@ -64,7 +64,7 @@ movieserve 1.0.0
 
 1. Install the app — see [docs/USAGE.md](docs/USAGE.md); it is sideloaded with `adb`.
 2. Open it, choose **Server address**, type the address above, save.
-3. Pick a film. VLC opens and plays it.
+3. Pick a film. It opens in your video player — if you have more than one, the app asks which, once.
 
 That is the whole thing.
 
@@ -107,7 +107,7 @@ correct HTTP range support so the scrub bar behaves.
 - **No accounts, no authentication.** Anyone on your network can list and download the shared
   folder. That is the intended trade-off for a tool on a home LAN — see [SECURITY.md](SECURITY.md).
 - **No posters or metadata.** Filenames and folders, nothing to configure or fetch.
-- **No subtitle handling.** VLC reads subtitles embedded in the file by itself.
+- **No subtitle handling.** The player reads subtitles embedded in the file by itself.
 
 ## Will it stream smoothly?
 
@@ -148,7 +148,7 @@ from:
 |---|---|
 | Laptop | Python 3.9 or newer. Nothing else. |
 | Or a phone | Android 7.0+, using `phone-app/` |
-| TV | Android 5.0+ with VLC installed, on the same network |
+| TV | Android 5.0+ with any video player installed (VLC, MX Player, the set's own), on the same network |
 | Building either app | JDK 17 and the Android SDK (`platforms;android-34`, `build-tools;34.x`) |
 
 ## Licence

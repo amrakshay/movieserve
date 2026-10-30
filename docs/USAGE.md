@@ -203,9 +203,15 @@ printing to its terminal, and that the IP has not changed — `ipconfig getifadd
 The folder has no files with a recognised extension, or they are all hidden. Check the server's
 startup line: it prints how many videos it found.
 
-**VLC does not open**
-VLC must be installed on the TV. The app targets `org.videolan.vlc` specifically, so a film never
-opens in something unexpected.
+**Nothing opens when a film is picked**
+A video player must be installed on the TV — VLC and MX Player both work, and many sets ship their
+own. The app lists whatever can open a video URL and asks which to use the first time, then
+remembers. Change it under **Server address → Default player**, or turn on **Ask every time** to be
+asked before each film.
+
+Android's own placeholder (`com.google.android.tv.frameworkpackagestubs`) claims to handle videos
+and then reports that nothing can. It is filtered out of the list on purpose, so if you expected to
+see it, that is why.
 
 **Playback stutters, or seeking takes many seconds**
 Almost always the TV's network rather than the server. Check what the TV's Wi-Fi actually is:
